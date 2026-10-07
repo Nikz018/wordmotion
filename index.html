@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Match Cut Maker</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#FAFAF7;--fg:#1b1b18;--mut:#6d6b63;--card:#fff;--line:#e0ded4;--y:#FFE94A;--on-y:#1b1b18}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15150f;--fg:#f1efe6;--mut:#a09d90;--card:#1f1f17;--line:#34332a}}
+:root[data-theme="dark"]{--bg:#15150f;--fg:#f1efe6;--mut:#a09d90;--card:#1f1f17;--line:#34332a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+h1{font:700 clamp(30px,6vw,52px)/1.1 Georgia,"Times New Roman",serif;margin:8px 0 6px;letter-spacing:-.02em}
+mark{background:var(--y);color:var(--on-y);padding:0 .12em}
+p.sub{color:var(--mut);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:22px;align-items:start}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 5px}
+label b{float:right;color:var(--fg);font-weight:600}
+input[type=text]{width:100%;font:600 22px Georgia,serif;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+input[type=range]{width:100%;accent-color:#d9b800}
+select{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit}
+.seg{display:flex;gap:6px}
+.seg button{flex:1;padding:9px 0;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:10px;font:inherit;cursor:pointer}
+.seg button.on{background:var(--y);color:var(--on-y);border-color:var(--y);font-weight:600}
+.go{width:100%;margin-top:16px;padding:14px;border:0;border-radius:12px;background:var(--fg);color:var(--bg);font:600 17px system-ui;cursor:pointer}
+.go:disabled{opacity:.5;cursor:wait}
+.stage{display:flex;justify-content:center;align-items:center;background:#000;border-radius:14px;overflow:hidden;min-height:260px}
+.stage canvas,.stage video{max-width:100%;max-height:72vh;display:block}
+.bar{height:4px;background:var(--line);border-radius:4px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--y)}
+#st{font-size:13px;color:var(--mut);margin-top:8px;min-height:20px}
+#dl{display:none;margin-top:10px}
+.small{font-size:12px;color:var(--mut);margin-top:12px}
+</style></head><body><main>
+<h1>Highlight a word. <mark>Get a match cut.</mark></h1>
+<p class="sub">Type a word, hit generate. Rendered 100% in your browser, nothing uploads.</p>
+<div class="grid">
+ <div>
+  <div class="stage" id="stage"><canvas id="cv"></canvas><video id="vid" controls playsinline loop style="display:none"></video></div>
+  <div class="bar"><i id="pg"></i></div><div id="st"></div>
+ </div>
+ <div class="card">
+  <label for="w">Word to highlight <b id="cc">0/23</b></label>
+  <input type="text" id="w" maxlength="23" value="gift" autocomplete="off" spellcheck="false">
+  <label>Aspect ratio</label>
+  <div class="seg" id="ar"><button data-a="9:16" class="on">9:16</button><button data-a="1:1">1:1</button><button data-a="16:9">16:9</button></div>
+  <label>Cuts per second <b id="cpsv">10</b></label><input type="range" id="cps" min="4" max="30" value="10">
+  <label>Zoom <b id="zv">1.5×</b></label><input type="range" id="zoom" min="0.6" max="2.5" step="0.1" value="1.5">
+  <label>Blur <b id="bv">1.0×</b></label><input type="range" id="blur" min="0" max="2.5" step="0.1" value="1">
+  <label>Duration <b id="dv">4.5s</b></label><input type="range" id="dur" min="2" max="10" step="0.5" value="4.5">
+  <label for="snd">Sound effect</label>
+  <select id="snd"><option value="paper">Paper shuffle (original)</option><option value="shutter">Camera shutter</option><option value="pop">Flash pop</option><option value="none">No sound</option></select>
+  <button class="go" id="go">Generate video</button>
+  <button class="go" id="dl" style="background:var(--y);color:var(--on-y)">Download</button>
+  <div class="small">Recorded in real time, so a 4.5s video takes 4.5s. Output is MP4 where your browser supports it, otherwise WebM.</div>
+ </div>
+</div>
+</main>
+<script>
+const $=id=>document.getElementById(id), cv=$('cv'), ctx=cv.getContext('2d');
+const off=document.createElement('canvas'), o=off.getContext('2d');
+const SIZES={'9:16':[1080,1920],'1:1':[1080,1080],'16:9':[1920,1080]};
+let ar='9:16', seed=1, blob=null, ext='webm', busy=false, ac=null, dest=null, nb=null;
+
+const T=["The mayor denied {W} entirely, then left the room.","Nobody could explain the {W} on the second floor.","Sources say the {W} was never reported.","It turns out the {W} had been signed twice.","A local woman described the {W} as \"unusual.\"","Officials confirmed the {W}, but not the date.","He returned the {W}. Nobody asked why.","There was a {W} in the report. Page nine.","The council voted on the {W} and then voted again.","Witnesses recall the {W} arriving just before noon.","Both parties agreed the {W} was a misunderstanding.","Why the {W} matters more than anyone admitted."];
+const F=["The official statement contained three facts and eleven adjectives.","Several residents said they had been asked to wait outside.","A spokesperson smiled and said nothing further would be added.","The committee has since requested a full review of the matter.","It was not clear who had approved the original decision.","Markets reacted calmly, then less calmly, by early afternoon.","The report was delayed pending confirmation from three offices.","Nobody wrote it down, but everyone remembers it clearly.","City officials declined to comment on the unconfirmed details.","The statement was revised twice before it was released at dusk.","Experts disagreed, mostly about the meaning of the word itself.","A full refund was promised and then quietly withdrawn."];
+const M=["THE DAILY OBSERVER","THE MORNING GAZETTE","CITY HERALD","THE EVENING POST","UNCONFIRMED SOURCES DESK","THE LOCAL LEDGER"];
+
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+function renderCut(i,word){
+ const [W,H]=SIZES[ar]; off.width=W; off.height=H;
+ const r=rng(i*7919+seed), pick=a=>a[Math.floor(r()*a.length)];
+ const zoom=+$('zoom').value, bl=+$('blur').value, S=Math.min(W,H);
+ const long=()=>Array.from({length:6},()=>pick(F)).join(' ');
+ const g=o.createRadialGradient(W/2,H/2,S*.2,W/2,H/2,Math.max(W,H)*.75);
+ g.addColorStop(0,'#efede6');g.addColorStop(1,'#dcdad1');
+ o.filter='none';o.fillStyle=g;o.fillRect(0,0,W,H);
+ const st=pick(['400 ','700 ','italic 700 ','400 ','700 ']);
+ let fs=S*.085*zoom*(.7+r()*.85);
+ const fam='Georgia,"Times New Roman",serif';
+ o.font=st+fs+'px '+fam; let ww=o.measureText(word).width;
+ if(ww>W*.7){fs*=W*.7/ww;o.font=st+fs+'px '+fam;ww=o.measureText(word).width}
+ const cx=W/2, base=H/2+fs*.33, lh=fs*1.5, pad=fs*.12, gap=fs*.26;
+ const n=Math.ceil(H/2/lh)+1;
+ // peripheral rows
+ for(let k=-n;k<=n;k++){ if(!k)continue;
+  const y=base+k*lh, d=Math.abs(k);
+  o.filter=bl>0?`blur(${(bl*d*fs*.04).toFixed(1)}px)`:'none';
+  if(k===-2&&r()<.35){o.font='600 '+fs*.26+'px system-ui,sans-serif';o.fillStyle='rgba(40,38,34,.55)';o.textAlign='center';o.fillText(pick(M),cx,y);continue}
+  o.font=(r()<.3?'italic 700 ':st)+fs*(d>2&&r()<.4?.45:1)+'px '+fam;
+  o.fillStyle=`rgba(35,34,30,${Math.max(.2,.88-d*.14)})`;o.textAlign='left';
+  o.fillText(long(),-r()*fs*9,y);
+ }
+ // main row
+ o.filter=bl>0?`blur(${(bl*fs*.012).toFixed(1)}px)`:'none';
+ o.font=st+fs+'px '+fam;
+ let [b,a]=pick(T).split('{W}'); b=b.trimEnd(); a=a.trimStart();
+ const gb=/["“(]$/.test(b)?0:gap, ga=/^[.,:;!?"”)]/.test(a)?0:gap;
+ o.fillStyle='rgba(20,20,18,.92)';
+ o.textAlign='right';o.fillText(long()+' '+b,cx-ww/2-pad-gb,base);
+ o.textAlign='left';o.fillText(a+' '+long(),cx+ww/2+pad+ga,base);
+ o.filter='none';
+ o.fillStyle='#FFE94A';o.fillRect(cx-ww/2-pad,base-fs*.82,ww+pad*2,fs*1.1);
+ o.fillStyle='#111';o.textAlign='center';o.fillText(word,cx,base);
+}
+
+function setSize(){const [W,H]=SIZES[ar];cv.width=W;cv.height=H}
+function blit(p){const [W,H]=SIZES[ar],s=1+.05*p;ctx.drawImage(off,W/2-W*s/2,H/2-H*s/2,W*s,H*s)}
+function idle(){setSize();renderCut(0,$('w').value.trim()||'gift');blit(0)}
+
+function sfx(k){
+ const t=ac.currentTime,g=ac.createGain();g.connect(dest);g.connect(ac.destination);
+ if(k==='pop'){const os=ac.createOscillator();os.frequency.setValueAtTime(900,t);os.frequency.exponentialRampToValueAtTime(120,t+.08);g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);os.connect(g);os.start(t);os.stop(t+.1);return}
+ const sr=ac.sampleRate,sh=k==='shutter',n=Math.floor(sr*(sh?.06:.035)),b=ac.createBuffer(1,n,sr),d=b.getChannelData(0);
+ // matched to the reference clip: ~5ms attack, ~25ms decay, flat 1-8kHz noise
+ for(let i=0;i<n;i++){const x=i/sr;d[i]=(Math.random()*2-1)*(x<.005?x/.005:Math.exp(-(x-.005)/(sh?.012:.005)))}
+ const s=ac.createBufferSource(),h1=ac.createBiquadFilter(),h2=ac.createBiquadFilter(),lp=ac.createBiquadFilter();
+ s.buffer=b;h1.type=h2.type='highpass';h1.frequency.value=h2.frequency.value=sh?2500:1300;lp.type='lowpass';lp.frequency.value=9000;
+ g.gain.value=(sh?.35:.2)*(.8+Math.random()*.4);
+ s.connect(h1);h1.connect(h2);h2.connect(lp);lp.connect(g);s.start(t);
+}
+
+function generate(){
+ if(busy)return; const word=$('w').value.trim(); if(!word){$('w').focus();return}
+ busy=true;$('go').disabled=true;$('dl').style.display='none';
+ $('vid').style.display='none';cv.style.display='block';$('vid').pause();
+ seed=(Math.random()*1e9)|0; setSize();
+ const cps=+$('cps').value,dur=+$('dur').value,snd=$('snd').value;
+ const stream=cv.captureStream(60);
+ if(snd!=='none'){
+  ac=ac||new AudioContext(); ac.resume();
+  if(!nb){nb=ac.createBuffer(1,ac.sampleRate*.2,ac.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}
+  dest=ac.createMediaStreamDestination(); dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
+ }
+ const mt=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(m=>MediaRecorder.isTypeSupported(m))||'';
+ const rec=new MediaRecorder(stream,mt?{mimeType:mt,videoBitsPerSecond:12e6}:{videoBitsPerSecond:12e6});
+ ext=mt.includes('mp4')?'mp4':'webm'; const chunks=[];
+ rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+ rec.onstop=()=>{
+  blob=new Blob(chunks,{type:ext==='mp4'?'video/mp4':'video/webm'});
+  const v=$('vid');v.src=URL.createObjectURL(blob);cv.style.display='none';v.style.display='block';v.play().catch(()=>{});
+  $('dl').style.display='block';$('go').disabled=false;$('go').textContent='Regenerate';
+  $('st').textContent='Done. '+(blob.size/1048576).toFixed(1)+' MB '+ext.toUpperCase();busy=false;
+ };
+ let start=0,last=-1;
+ const tick=now=>{
+  if(!start)start=now; const t=(now-start)/1000;
+  if(t>=dur){rec.stop();$('pg').style.width='100%';return}
+  const idx=Math.floor(t*cps);
+  if(idx!==last){last=idx;renderCut(idx,word);if(snd!=='none')sfx(snd)}
+  blit((t*cps)%1);
+  $('pg').style.width=(t/dur*100)+'%';$('st').textContent='Rendering… '+t.toFixed(1)+'s / '+dur+'s';
+  requestAnimationFrame(tick);
+ };
+ rec.start(); requestAnimationFrame(tick);
+}
+
+async function save(){
+ if(!blob)return;
+ const name='match-cut-'+($('w').value.trim().replace(/[^\w]+/g,'-')||'video')+'.'+ext;
+ try{
+  const d=window.claude&&await claude.use('downloads');
+  if(d){await d.save({filename:name,data:blob});return}
+ }catch(e){if(e&&e.code==='declined')return}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();
+}
+
+$('go').onclick=generate; $('dl').onclick=save;
+$('ar').onclick=e=>{const b=e.target.closest('button');if(!b||busy)return;ar=b.dataset.a;[...$('ar').children].forEach(x=>x.classList.toggle('on',x===b));idle()};
+const bind=(id,out,fmt)=>$(id).oninput=()=>{$(out).textContent=fmt($(id).value);if(!busy&&id!=='cps'&&id!=='dur')idle()};
+bind('cps','cpsv',v=>v);bind('zoom','zv',v=>(+v).toFixed(1)+'×');bind('blur','bv',v=>(+v).toFixed(1)+'×');bind('dur','dv',v=>v+'s');
+$('w').oninput=()=>{$('cc').textContent=$('w').value.length+'/23';if(!busy)idle()};
+$('w').onkeydown=e=>{if(e.key==='Enter')generate()};
+$('cc').textContent=$('w').value.length+'/23';
+if(!window.MediaRecorder){$('go').disabled=true;$('st').textContent='This browser has no MediaRecorder support. Try Chrome, Edge, Safari 14.1+ or Firefox.'}
+idle();
+</script></body></html>
