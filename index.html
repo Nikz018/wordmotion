@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Match Cut Maker</title>
+<title>Text Match Cut Video Maker - Free, In Your Browser</title>
+<meta name="description" content="Type a word and generate a fast text match cut video with a highlighted word. Free, runs fully in your browser, nothing is uploaded.">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#FAFAF7;--fg:#1b1b18;--mut:#6d6b63;--card:#fff;--line:#e0ded4;--y:#FFE94A;--on-y:#1b1b18}
@@ -34,9 +35,16 @@ select{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);ba
 #st{font-size:13px;color:var(--mut);margin-top:8px;min-height:20px}
 #dl{display:none;margin-top:10px}
 .small{font-size:12px;color:var(--mut);margin-top:12px}
+.ad{margin:16px 0;text-align:center;overflow:hidden}.ad:empty{display:none}.ad small{display:block;font-size:10px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}footer a{color:var(--mut);margin-right:14px}
+#cb{display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:620px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:9}
+#cb p{margin:0;flex:1 1 260px}#cb button{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}#cb button.p{background:var(--y);color:var(--on-y);border-color:var(--y);font-weight:600}
+.info{max-width:720px;margin:44px auto 0}.info h2{font:700 26px/1.2 Georgia,"Times New Roman",serif;margin:30px 0 10px}.info p,.info li{color:var(--fg);line-height:1.65}.info li{margin-bottom:8px}
+details{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;margin:8px 0}summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;color:var(--mut)}
 </style></head><body><main>
 <h1>Highlight a word. <mark>Get a match cut.</mark></h1>
 <p class="sub">Type a word, hit generate. Rendered 100% in your browser, nothing uploads.</p>
+<div class="ad" id="ad-top"></div>
 <div class="grid">
  <div>
   <div class="stage" id="stage"><canvas id="cv"></canvas><video id="vid" controls playsinline loop style="display:none"></video></div>
@@ -58,7 +66,34 @@ select{width:100%;padding:9px;border-radius:10px;border:1px solid var(--line);ba
   <div class="small">Recorded in real time, so a 4.5s video takes 4.5s. Output is MP4 where your browser supports it, otherwise WebM.</div>
  </div>
 </div>
+<div class="ad" id="ad-bottom"></div>
+<section class="info" id="how">
+<h2>What is a text match cut?</h2>
+<p>A text match cut is a quick sequence of cuts where one word stays locked in the same spot, at the same size, while everything around it changes. Each frame pulls the word out of a different sentence, so your eye stays fixed on the word while the context flickers past. It is a popular trick in short-form video, essay videos and kinetic typography, because it makes a single word feel loud and memorable without any complicated editing.</p>
+<h2>How it works</h2>
+<ol>
+<li><b>Type your word.</b> Short words (up to 23 characters) hit hardest. The preview updates as you type.</li>
+<li><b>Choose a shape.</b> Pick 9:16 for Shorts, Reels or TikTok, 1:1 for feeds, or 16:9 for YouTube and presentations.</li>
+<li><b>Tune the feel.</b> Cuts per second sets the rhythm (8 to 12 feels punchy), zoom controls how big the text is, blur softens the surrounding lines, and duration sets the length. Choose a sound effect or none.</li>
+<li><b>Generate and download.</b> The video is recorded live in your browser. When it finishes, watch it back, then download it. Not happy? Press Regenerate for a fresh mix of frames.</li>
+</ol>
+<p>Everything happens on your device. Your word and your video are never uploaded.</p>
+<h2>Ideas and use cases</h2>
+<ul>
+<li><b>Hook for a Short or Reel.</b> Open with the key word of your video for two to three seconds, then cut to the main content. If your video is about "trust", generate it with the word "trust".</li>
+<li><b>Intro or title sting.</b> Use your channel's keyword or the episode topic as a one-second opener before the first scene.</li>
+<li><b>Section transition in essay videos.</b> Drop a short clip between chapters, with the next chapter's key word as the match cut.</li>
+<li><b>Emphasis for quotes and lyrics.</b> Highlight the one word you want viewers to remember, then reveal the full line.</li>
+<li><b>Teasers for podcasts and talks.</b> Pair a clip of the key term with a short audio snippet from the episode.</li>
+<li><b>Classroom and presentations.</b> Introduce a new term with a three-second clip before you explain it.</li>
+</ul>
+<p>In any editor (CapCut, Premiere Pro, DaVinci Resolve), drop the downloaded file on your timeline like a normal clip. Cut your voice-over or music over it, and mute the built-in sound if you want to use your own.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Is my word or my video uploaded anywhere?</summary><p>No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side.</p></details><details><summary>What file format do I get?</summary><p>MP4 if your browser can record it, otherwise WebM. Recent versions of Chrome, Edge and Safari can usually produce MP4; Firefox typically gives WebM. If an editor won&#x27;t accept WebM, convert it with a free tool such as HandBrake or CapCut.</p></details><details><summary>Which browsers and devices work?</summary><p>Any recent desktop browser (Chrome, Edge, Firefox, Safari 14.1 or newer) that supports the MediaRecorder feature. Phones work too, but recording a 1080 by 1920 video is heavy, so older phones may drop frames. A laptop gives the smoothest result.</p></details><details><summary>Why does generating take as long as the video itself?</summary><p>The video is recorded live while it plays on the canvas, so a 4.5 second video takes 4.5 seconds. Keep the tab open and in the foreground until it finishes, otherwise the browser may slow it down.</p></details><details><summary>What resolution is the output?</summary><p>1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok.</p></details><details><summary>Can I use the videos commercially?</summary><p>Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool.</p></details><details><summary>Can I write my own sentences for the frames?</summary><p>Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word.</p></details><details><summary>Does it work with words in other languages?</summary><p>Yes, but the frames use a serif font, and scripts it doesn&#x27;t cover fall back to your device&#x27;s default font, so the look can vary. Latin-script words look the most consistent.</p></details><details><summary>The video looks choppy. What can I do?</summary><p>Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw.</p></details></section>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my word or my video uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side."}}, {"@type": "Question", "name": "What file format do I get?", "acceptedAnswer": {"@type": "Answer", "text": "MP4 if your browser can record it, otherwise WebM. Recent versions of Chrome, Edge and Safari can usually produce MP4; Firefox typically gives WebM. If an editor won't accept WebM, convert it with a free tool such as HandBrake or CapCut."}}, {"@type": "Question", "name": "Which browsers and devices work?", "acceptedAnswer": {"@type": "Answer", "text": "Any recent desktop browser (Chrome, Edge, Firefox, Safari 14.1 or newer) that supports the MediaRecorder feature. Phones work too, but recording a 1080 by 1920 video is heavy, so older phones may drop frames. A laptop gives the smoothest result."}}, {"@type": "Question", "name": "Why does generating take as long as the video itself?", "acceptedAnswer": {"@type": "Answer", "text": "The video is recorded live while it plays on the canvas, so a 4.5 second video takes 4.5 seconds. Keep the tab open and in the foreground until it finishes, otherwise the browser may slow it down."}}, {"@type": "Question", "name": "What resolution is the output?", "acceptedAnswer": {"@type": "Answer", "text": "1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok."}}, {"@type": "Question", "name": "Can I use the videos commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool."}}, {"@type": "Question", "name": "Can I write my own sentences for the frames?", "acceptedAnswer": {"@type": "Answer", "text": "Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word."}}, {"@type": "Question", "name": "Does it work with words in other languages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but the frames use a serif font, and scripts it doesn't cover fall back to your device's default font, so the look can vary. Latin-script words look the most consistent."}}, {"@type": "Question", "name": "The video looks choppy. What can I do?", "acceptedAnswer": {"@type": "Answer", "text": "Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw."}}]}</script>
+<footer><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a><span>Videos are made in your browser and never uploaded.</span></footer>
 </main>
+<div id="cb"><p>We use cookies for ads. Choose personalized ads, or keep ads non-personalized. The tool works either way.</p><button id="cn">Non-personalized</button><button id="ca" class="p">Accept</button></div>
 <script>
 const $=id=>document.getElementById(id), cv=$('cv'), ctx=cv.getContext('2d');
 const off=document.createElement('canvas'), o=off.getContext('2d');
@@ -178,4 +213,21 @@ $('w').onkeydown=e=>{if(e.key==='Enter')generate()};
 $('cc').textContent=$('w').value.length+'/23';
 if(!window.MediaRecorder){$('go').disabled=true;$('st').textContent='This browser has no MediaRecorder support. Try Chrome, Edge, Safari 14.1+ or Firefox.'}
 idle();
+// ---- ADS: fill these in after AdSense approval, then redeploy ----
+const ADS={client:'',top:'',bottom:''}; // client: 'ca-pub-XXXXXXXXXXXXXXXX', top/bottom: ad slot IDs
+function loadAds(npa){
+ if(!ADS.client)return;
+ window.adsbygoogle=window.adsbygoogle||[];if(npa)adsbygoogle.requestNonPersonalizedAds=1;
+ const s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';
+ s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+ADS.client;document.head.appendChild(s);
+ [['ad-top',ADS.top],['ad-bottom',ADS.bottom]].forEach(([id,slot])=>{if(!slot)return;
+  $(id).innerHTML='<small>Advertisement</small><ins class="adsbygoogle" style="display:block" data-ad-client="'+ADS.client+'" data-ad-slot="'+slot+'" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+  (adsbygoogle=window.adsbygoogle||[]).push({});});
+}
+(function(){let c=null;try{c=localStorage.getItem('ad-consent')}catch(e){}
+ if(c){loadAds(c==='npa');return}
+ if(!ADS.client)return;
+ const pick=v=>{try{localStorage.setItem('ad-consent',v)}catch(e){}$('cb').style.display='none';loadAds(v==='npa')};
+ $('cb').style.display='flex';$('ca').onclick=()=>pick('all');$('cn').onclick=()=>pick('npa');
+})();
 </script></body></html>
