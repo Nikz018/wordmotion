@@ -47,7 +47,7 @@ details{border:1px solid var(--line);background:var(--card);border-radius:12px;p
 <div class="ad" id="ad-top"></div>
 <div class="grid">
  <div>
-  <div class="stage" id="stage"><canvas id="cv"></canvas><video id="vid" controls playsinline loop style="display:none"></video></div>
+  <div class="stage" id="stage"><canvas id="cv"></canvas><div id="stg" style="display:none;color:#bbb;padding:60px 20px;text-align:center;font-size:14px">Rendering your video…<br>The first run can take a few seconds while the encoder starts.</div><video id="vid" controls playsinline loop style="display:none"></video></div>
   <div class="bar"><i id="pg"></i></div><div id="st"></div>
  </div>
  <div class="card">
@@ -99,13 +99,25 @@ details{border:1px solid var(--line);background:var(--card);border-radius:12px;p
 const $=id=>document.getElementById(id), cv=$('cv'), ctx=cv.getContext('2d');
 const off=document.createElement('canvas'), o=off.getContext('2d');
 const SIZES={'9:16':[1080,1920],'1:1':[1080,1080],'16:9':[1920,1080]};
-let ar='9:16', seed=1, blob=null, ext='webm', busy=false, ac=null, dest=null, nb=null;
+let note='', ar='9:16', seed=1, blob=null, ext='webm', busy=false, ac=null, dest=null, nb=null;
 
 const T=["The mayor denied {W} entirely, then left the room.","Nobody could explain the {W} on the second floor.","Sources say the {W} was never reported.","It turns out the {W} had been signed twice.","A local woman described the {W} as \"unusual.\"","Officials confirmed the {W}, but not the date.","He returned the {W}. Nobody asked why.","There was a {W} in the report. Page nine.","The council voted on the {W} and then voted again.","Witnesses recall the {W} arriving just before noon.","Both parties agreed the {W} was a misunderstanding.","Why the {W} matters more than anyone admitted."];
 const F=["The official statement contained three facts and eleven adjectives.","Several residents said they had been asked to wait outside.","A spokesperson smiled and said nothing further would be added.","The committee has since requested a full review of the matter.","It was not clear who had approved the original decision.","Markets reacted calmly, then less calmly, by early afternoon.","The report was delayed pending confirmation from three offices.","Nobody wrote it down, but everyone remembers it clearly.","City officials declined to comment on the unconfirmed details.","The statement was revised twice before it was released at dusk.","Experts disagreed, mostly about the meaning of the word itself.","A full refund was promised and then quietly withdrawn."];
 const M=["THE DAILY OBSERVER","THE MORNING GAZETTE","CITY HERALD","THE EVENING POST","UNCONFIRMED SOURCES DESK","THE LOCAL LEDGER"];
 
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+const sc=document.createElement('canvas'),sx=sc.getContext('2d');
+// Cheap blur: draw the row small, then scale it up with smoothing (canvas filter:blur is far too slow for 10+ cuts per second)
+function row(txt,x,y,font,fs,color,blurPx,align){
+ if(blurPx<1.2){o.font=font;o.fillStyle=color;o.textAlign=align;o.fillText(txt,x,y);return}
+ const k=Math.min(blurPx/1.3,24),W=off.width,top=fs*1.05,sw=Math.ceil(W/k),sh=Math.ceil(fs*1.6/k);
+ sx.setTransform(1,0,0,1,0,0);
+ if(sc.width!==sw||sc.height!==sh){sc.width=sw;sc.height=sh}else sx.clearRect(0,0,sw,sh);
+ sx.setTransform(1/k,0,0,1/k,0,0);sx.font=font;sx.fillStyle=color;sx.textAlign=align;sx.fillText(txt,x,top);
+ o.imageSmoothingEnabled=true;o.imageSmoothingQuality='high';
+ o.drawImage(sc,0,0,sw,sh,0,y-top,sw*k,sh*k);
+}
 
 function renderCut(i,word){
  const [W,H]=SIZES[ar]; off.width=W; off.height=H;
@@ -114,7 +126,7 @@ function renderCut(i,word){
  const long=()=>Array.from({length:6},()=>pick(F)).join(' ');
  const g=o.createRadialGradient(W/2,H/2,S*.2,W/2,H/2,Math.max(W,H)*.75);
  g.addColorStop(0,'#efede6');g.addColorStop(1,'#dcdad1');
- o.filter='none';o.fillStyle=g;o.fillRect(0,0,W,H);
+ o.fillStyle=g;o.fillRect(0,0,W,H);
  const st=pick(['400 ','700 ','italic 700 ','400 ','700 ']);
  let fs=S*.085*zoom*(.7+r()*.85);
  const fam='Georgia,"Times New Roman",serif';
@@ -122,30 +134,24 @@ function renderCut(i,word){
  if(ww>W*.7){fs*=W*.7/ww;o.font=st+fs+'px '+fam;ww=o.measureText(word).width}
  const cx=W/2, base=H/2+fs*.33, lh=fs*1.5, pad=fs*.12, gap=fs*.26;
  const n=Math.ceil(H/2/lh)+1;
- // peripheral rows
  for(let k=-n;k<=n;k++){ if(!k)continue;
-  const y=base+k*lh, d=Math.abs(k);
-  o.filter=bl>0?`blur(${(bl*d*fs*.04).toFixed(1)}px)`:'none';
-  if(k===-2&&r()<.35){o.font='600 '+fs*.26+'px system-ui,sans-serif';o.fillStyle='rgba(40,38,34,.55)';o.textAlign='center';o.fillText(pick(M),cx,y);continue}
-  o.font=(r()<.3?'italic 700 ':st)+fs*(d>2&&r()<.4?.45:1)+'px '+fam;
-  o.fillStyle=`rgba(35,34,30,${Math.max(.2,.88-d*.14)})`;o.textAlign='left';
-  o.fillText(long(),-r()*fs*9,y);
+  const y=base+k*lh, d=Math.abs(k), bp=bl*d*fs*.04;
+  if(k===-2&&r()<.35){row(pick(M),cx,y,'600 '+fs*.26+'px system-ui,sans-serif',fs*.26,'rgba(40,38,34,.55)',bp,'center');continue}
+  const f=(r()<.3?'italic 700 ':st)+fs*(d>2&&r()<.4?.45:1)+'px '+fam;
+  row(long(),-r()*fs*9,y,f,fs,`rgba(35,34,30,${Math.max(.2,.88-d*.14)})`,bp,'left');
  }
- // main row
- o.filter=bl>0?`blur(${(bl*fs*.012).toFixed(1)}px)`:'none';
  o.font=st+fs+'px '+fam;
  let [b,a]=pick(T).split('{W}'); b=b.trimEnd(); a=a.trimStart();
  const gb=/["“(]$/.test(b)?0:gap, ga=/^[.,:;!?"”)]/.test(a)?0:gap;
  o.fillStyle='rgba(20,20,18,.92)';
  o.textAlign='right';o.fillText(long()+' '+b,cx-ww/2-pad-gb,base);
  o.textAlign='left';o.fillText(a+' '+long(),cx+ww/2+pad+ga,base);
- o.filter='none';
  o.fillStyle='#FFE94A';o.fillRect(cx-ww/2-pad,base-fs*.82,ww+pad*2,fs*1.1);
  o.fillStyle='#111';o.textAlign='center';o.fillText(word,cx,base);
 }
 
 function setSize(){const [W,H]=SIZES[ar];cv.width=W;cv.height=H}
-function blit(p){const [W,H]=SIZES[ar],s=1+.05*p;ctx.drawImage(off,W/2-W*s/2,H/2-H*s/2,W*s,H*s)}
+function blit(p,c=ctx){const [W,H]=SIZES[ar],s=1+.05*p;c.drawImage(off,W/2-W*s/2,H/2-H*s/2,W*s,H*s)}
 function idle(){setSize();renderCut(0,$('w').value.trim()||'gift');blit(0)}
 
 function sfx(k,c,out,t){
@@ -162,41 +168,58 @@ function sfx(k,c,out,t){
 
 const tick0=()=>new Promise(r=>setTimeout(r));
 function finish(b,e){
- blob=b;ext=e;const v=$('vid');v.src=URL.createObjectURL(b);cv.style.display='none';v.style.display='block';v.play().catch(()=>{});
+ blob=b;ext=e;$('stg').style.display='none';const v=$('vid');v.src=URL.createObjectURL(b);cv.style.display='none';v.style.display='block';v.play().catch(()=>{});
  $('dl').style.display='block';$('go').disabled=false;$('go').textContent='Regenerate';$('pg').style.width='100%';
- $('st').textContent='Done. '+(b.size/1048576).toFixed(1)+' MB '+e.toUpperCase();busy=false;
+ $('st').textContent='Done. '+(b.size/1048576).toFixed(1)+' MB '+e.toUpperCase()+note;busy=false;
 }
 
 // Fast path: render frame by frame with exact timestamps (no real-time capture, so playback speed is always correct)
 async function recordOffline(word,cps,dur,snd){
  const FPS=30,[W,H]=SIZES[ar],total=Math.round(dur*FPS),withA=snd!=='none',SR=48000;
- const vcfg={codec:'avc1.640032',width:W,height:H,bitrate:10e6,framerate:FPS};
- const acfg={codec:'mp4a.40.2',sampleRate:SR,numberOfChannels:1,bitrate:128000};
- if(!(await VideoEncoder.isConfigSupported(vcfg)).supported)throw new Error('H.264 encoding not supported');
- let audio=withA;
- if(audio&&!(window.AudioEncoder&&(await AudioEncoder.isConfigSupported(acfg)).supported)){audio=false;$('st').textContent='This browser cannot encode sound. Exporting without sound…'}
+ $('st').textContent='Starting encoder… (first run can take a few seconds)';
+ let vcfg=null;
+ for(const codec of ['avc1.64002A','avc1.640032','avc1.640028','avc1.4d002a','avc1.42002a']){
+  const c={codec,width:W,height:H,bitrate:10e6,framerate:FPS};
+  try{if((await VideoEncoder.isConfigSupported(c)).supported){vcfg=c;break}}catch(e){}
+ }
+ if(!vcfg)throw new Error('H.264 encoding not supported');
+ let audio=null;note='';
+ if(withA){
+  for(const [codec,mc,br] of [['mp4a.40.2','aac',128000],['opus','opus',96000]]){
+   const c={codec,sampleRate:SR,numberOfChannels:1,bitrate:br};
+   try{if(window.AudioEncoder&&(await AudioEncoder.isConfigSupported(c)).supported){audio={cfg:c,mc};break}}catch(e){}
+  }
+  if(!audio)note=' (No sound: this browser cannot encode audio. Pick another browser for sound.)';
+ }
  const mo={target:new Mp4Muxer.ArrayBufferTarget(),video:{codec:'avc',width:W,height:H,frameRate:FPS},fastStart:'in-memory'};
- if(audio)mo.audio={codec:'aac',numberOfChannels:1,sampleRate:SR};
+ if(audio)mo.audio={codec:audio.mc,numberOfChannels:1,sampleRate:SR};
  const muxer=new Mp4Muxer.Muxer(mo);let err=null;
  const ve=new VideoEncoder({output:(c,m)=>muxer.addVideoChunk(c,m),error:e=>err=e});ve.configure(vcfg);
+ const fc=document.createElement('canvas');fc.width=W;fc.height=H;const fx=fc.getContext('2d'); // detached canvas: much faster than the on-screen one
  let last=-1;
  for(let n=0;n<total;n++){
-  if(err)throw err;
+  if(err||ve.state==='closed')throw err||new Error('encoder closed');
   const t=n/FPS,idx=Math.floor(t*cps);
   if(idx!==last){last=idx;renderCut(idx,word)}
-  blit((t*cps)%1);
-  const f=new VideoFrame(cv,{timestamp:Math.round(t*1e6),duration:Math.round(1e6/FPS)});
+  blit((t*cps)%1,fx);
+  const f=new VideoFrame(fc,{timestamp:Math.round(t*1e6),duration:Math.round(1e6/FPS)});
   ve.encode(f,{keyFrame:n%FPS===0});f.close();
-  while(ve.encodeQueueSize>6)await new Promise(r=>setTimeout(r,4));
-  if(n%3===0){$('pg').style.width=(n/total*90)+'%';$('st').textContent='Rendering frame '+n+' / '+total;await tick0()}
+  let stall=Date.now();
+  while(ve.encodeQueueSize>4){
+   if(err||ve.state==='closed')throw err||new Error('encoder closed');
+   if(Date.now()-stall>15000)throw new Error('encoder stalled');
+   await new Promise(r=>setTimeout(r,4));
+  }
+  if(n%2===0){$('pg').style.width=(n/total*90)+'%';$('st').textContent='Rendering frame '+n+' / '+total;await tick0()}
  }
+ cv.getContext('2d').drawImage(fc,0,0);
  await ve.flush();if(err)throw err;
  if(audio){
   $('st').textContent='Rendering sound…';
   const oc=new OfflineAudioContext(1,Math.ceil(SR*dur),SR);
   for(let i=0;i/cps<dur;i++)sfx(snd,oc,oc.destination,i/cps);
   const pcm=(await oc.startRendering()).getChannelData(0);
-  const ae=new AudioEncoder({output:(c,m)=>muxer.addAudioChunk(c,m),error:e=>err=e});ae.configure(acfg);
+  const ae=new AudioEncoder({output:(c,m)=>muxer.addAudioChunk(c,m),error:e=>err=e});ae.configure(audio.cfg);
   for(let i=0;i<pcm.length;i+=4800){
    const part=pcm.slice(i,i+4800),ad=new AudioData({format:'f32-planar',sampleRate:SR,numberOfFrames:part.length,numberOfChannels:1,timestamp:Math.round(i/SR*1e6),data:part});
    ae.encode(ad);ad.close();
@@ -209,6 +232,7 @@ async function recordOffline(word,cps,dur,snd){
 
 // Fallback for browsers without WebCodecs: live canvas recording
 function recordLive(word,cps,dur,snd){
+ note='';
  const stream=cv.captureStream(30);let bus=null;
  if(snd!=='none'){
   ac=ac||new AudioContext();ac.resume();
@@ -235,12 +259,13 @@ function recordLive(word,cps,dur,snd){
 async function generate(){
  if(busy)return;const word=$('w').value.trim();if(!word){$('w').focus();return}
  busy=true;$('go').disabled=true;$('dl').style.display='none';
- $('vid').pause();$('vid').style.display='none';cv.style.display='block';$('pg').style.width='0';
+ $('vid').pause();$('vid').style.display='none';$('pg').style.width='0';const fast=!!(window.VideoEncoder&&window.VideoFrame&&window.Mp4Muxer);
+ cv.style.display=fast?'none':'block';$('stg').style.display=fast?'flex':'none';
  seed=(Math.random()*1e9)|0;setSize();
  const cps=+$('cps').value,dur=+$('dur').value,snd=$('snd').value;
- if(window.VideoEncoder&&window.VideoFrame&&window.Mp4Muxer){
+ if(fast){
   try{finish(await recordOffline(word,cps,dur,snd),'mp4');return}
-  catch(e){console.warn('WebCodecs path failed, using live recording',e);setSize()}
+  catch(e){cv.style.display='block';$('stg').style.display='none';console.warn('WebCodecs path failed, using live recording',e);setSize();$('st').textContent='Fast mode failed ('+(e&&e.message||e)+'). Using live recording…'}
  }
  recordLive(word,cps,dur,snd);
 }
