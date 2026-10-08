@@ -63,7 +63,7 @@ details{border:1px solid var(--line);background:var(--card);border-radius:12px;p
   <select id="snd"><option value="paper">Paper shuffle (original)</option><option value="shutter">Camera shutter</option><option value="pop">Flash pop</option><option value="none">No sound</option></select>
   <button class="go" id="go">Generate video</button>
   <button class="go" id="dl" style="background:var(--y);color:var(--on-y)">Download</button>
-  <div class="small">Recorded in real time, so a 4.5s video takes 4.5s. Output is MP4 where your browser supports it, otherwise WebM.</div>
+  <div class="small">Videos are rendered frame by frame in your browser, so they play at the correct speed. Output is MP4.</div>
  </div>
 </div>
 <div class="ad" id="ad-bottom"></div>
@@ -75,7 +75,7 @@ details{border:1px solid var(--line);background:var(--card);border-radius:12px;p
 <li><b>Type your word.</b> Short words (up to 23 characters) hit hardest. The preview updates as you type.</li>
 <li><b>Choose a shape.</b> Pick 9:16 for Shorts, Reels or TikTok, 1:1 for feeds, or 16:9 for YouTube and presentations.</li>
 <li><b>Tune the feel.</b> Cuts per second sets the rhythm (8 to 12 feels punchy), zoom controls how big the text is, blur softens the surrounding lines, and duration sets the length. Choose a sound effect or none.</li>
-<li><b>Generate and download.</b> The video is recorded live in your browser. When it finishes, watch it back, then download it. Not happy? Press Regenerate for a fresh mix of frames.</li>
+<li><b>Generate and download.</b> The video is rendered frame by frame in your browser. When it finishes, watch it back, then download it. Not happy? Press Regenerate for a fresh mix of frames.</li>
 </ol>
 <p>Everything happens on your device. Your word and your video are never uploaded.</p>
 <h2>Ideas and use cases</h2>
@@ -89,11 +89,12 @@ details{border:1px solid var(--line);background:var(--card);border-radius:12px;p
 </ul>
 <p>In any editor (CapCut, Premiere Pro, DaVinci Resolve), drop the downloaded file on your timeline like a normal clip. Cut your voice-over or music over it, and mute the built-in sound if you want to use your own.</p>
 <h2 id="faq">Frequently asked questions</h2>
-<details><summary>Is my word or my video uploaded anywhere?</summary><p>No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side.</p></details><details><summary>What file format do I get?</summary><p>MP4 if your browser can record it, otherwise WebM. Recent versions of Chrome, Edge and Safari can usually produce MP4; Firefox typically gives WebM. If an editor won&#x27;t accept WebM, convert it with a free tool such as HandBrake or CapCut.</p></details><details><summary>Which browsers and devices work?</summary><p>Any recent desktop browser (Chrome, Edge, Firefox, Safari 14.1 or newer) that supports the MediaRecorder feature. Phones work too, but recording a 1080 by 1920 video is heavy, so older phones may drop frames. A laptop gives the smoothest result.</p></details><details><summary>Why does generating take as long as the video itself?</summary><p>The video is recorded live while it plays on the canvas, so a 4.5 second video takes 4.5 seconds. Keep the tab open and in the foreground until it finishes, otherwise the browser may slow it down.</p></details><details><summary>What resolution is the output?</summary><p>1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok.</p></details><details><summary>Can I use the videos commercially?</summary><p>Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool.</p></details><details><summary>Can I write my own sentences for the frames?</summary><p>Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word.</p></details><details><summary>Does it work with words in other languages?</summary><p>Yes, but the frames use a serif font, and scripts it doesn&#x27;t cover fall back to your device&#x27;s default font, so the look can vary. Latin-script words look the most consistent.</p></details><details><summary>The video looks choppy. What can I do?</summary><p>Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw.</p></details></section>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my word or my video uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side."}}, {"@type": "Question", "name": "What file format do I get?", "acceptedAnswer": {"@type": "Answer", "text": "MP4 if your browser can record it, otherwise WebM. Recent versions of Chrome, Edge and Safari can usually produce MP4; Firefox typically gives WebM. If an editor won't accept WebM, convert it with a free tool such as HandBrake or CapCut."}}, {"@type": "Question", "name": "Which browsers and devices work?", "acceptedAnswer": {"@type": "Answer", "text": "Any recent desktop browser (Chrome, Edge, Firefox, Safari 14.1 or newer) that supports the MediaRecorder feature. Phones work too, but recording a 1080 by 1920 video is heavy, so older phones may drop frames. A laptop gives the smoothest result."}}, {"@type": "Question", "name": "Why does generating take as long as the video itself?", "acceptedAnswer": {"@type": "Answer", "text": "The video is recorded live while it plays on the canvas, so a 4.5 second video takes 4.5 seconds. Keep the tab open and in the foreground until it finishes, otherwise the browser may slow it down."}}, {"@type": "Question", "name": "What resolution is the output?", "acceptedAnswer": {"@type": "Answer", "text": "1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok."}}, {"@type": "Question", "name": "Can I use the videos commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool."}}, {"@type": "Question", "name": "Can I write my own sentences for the frames?", "acceptedAnswer": {"@type": "Answer", "text": "Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word."}}, {"@type": "Question", "name": "Does it work with words in other languages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but the frames use a serif font, and scripts it doesn't cover fall back to your device's default font, so the look can vary. Latin-script words look the most consistent."}}, {"@type": "Question", "name": "The video looks choppy. What can I do?", "acceptedAnswer": {"@type": "Answer", "text": "Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw."}}]}</script>
+<details><summary>Is my word or my video uploaded anywhere?</summary><p>No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side.</p></details><details><summary>What file format do I get?</summary><p>MP4 (H.264 video with AAC sound) in modern browsers. Very old browsers fall back to a live recording that may be WebM. If an editor won&#x27;t accept WebM, convert it with a free tool such as HandBrake or CapCut.</p></details><details><summary>Which browsers and devices work?</summary><p>A recent version of Chrome, Edge, Safari or Firefox on desktop works best. Phones work too, but rendering a 1080 by 1920 video is heavy, so older phones may be slow. A laptop gives the smoothest result.</p></details><details><summary>How long does it take to generate a video?</summary><p>Usually a few seconds. Frames are rendered one by one and encoded with your browser's built-in video encoder, so the speed depends on your device. Keep the tab open until it finishes. Browsers without that encoder fall back to a live recording, which takes as long as the video itself.</p></details><details><summary>What resolution is the output?</summary><p>1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok.</p></details><details><summary>Can I use the videos commercially?</summary><p>Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool.</p></details><details><summary>Can I write my own sentences for the frames?</summary><p>Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word.</p></details><details><summary>Does it work with words in other languages?</summary><p>Yes, but the frames use a serif font, and scripts it doesn&#x27;t cover fall back to your device&#x27;s default font, so the look can vary. Latin-script words look the most consistent.</p></details><details><summary>The video looks choppy. What can I do?</summary><p>Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw.</p></details></section>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my word or my video uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side."}}, {"@type": "Question", "name": "What file format do I get?", "acceptedAnswer": {"@type": "Answer", "text": "MP4 (H.264 video with AAC sound) in modern browsers. Very old browsers fall back to a live recording that may be WebM. If an editor won't accept WebM, convert it with a free tool such as HandBrake or CapCut."}}, {"@type": "Question", "name": "Which browsers and devices work?", "acceptedAnswer": {"@type": "Answer", "text": "A recent version of Chrome, Edge, Safari or Firefox on desktop works best. Phones work too, but rendering a 1080 by 1920 video is heavy, so older phones may be slow. A laptop gives the smoothest result."}}, {"@type": "Question", "name": "How long does it take to generate a video?", "acceptedAnswer": {"@type": "Answer", "text": "Usually a few seconds. Frames are rendered one by one and encoded with your browser's built-in video encoder, so the speed depends on your device. Keep the tab open until it finishes. Browsers without that encoder fall back to a live recording, which takes as long as the video itself."}}, {"@type": "Question", "name": "What resolution is the output?", "acceptedAnswer": {"@type": "Answer", "text": "1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok."}}, {"@type": "Question", "name": "Can I use the videos commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool."}}, {"@type": "Question", "name": "Can I write my own sentences for the frames?", "acceptedAnswer": {"@type": "Answer", "text": "Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word."}}, {"@type": "Question", "name": "Does it work with words in other languages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but the frames use a serif font, and scripts it doesn't cover fall back to your device's default font, so the look can vary. Latin-script words look the most consistent."}}, {"@type": "Question", "name": "The video looks choppy. What can I do?", "acceptedAnswer": {"@type": "Answer", "text": "Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw."}}]}</script>
 <footer><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a><span>Videos are made in your browser and never uploaded.</span></footer>
 </main>
 <div id="cb"><p>We use cookies for ads. Choose personalized ads, or keep ads non-personalized. The tool works either way.</p><button id="cn">Non-personalized</button><button id="ca" class="p">Accept</button></div>
+<script src="mp4-muxer.js"></script>
 <script>
 const $=id=>document.getElementById(id), cv=$('cv'), ctx=cv.getContext('2d');
 const off=document.createElement('canvas'), o=off.getContext('2d');
@@ -147,51 +148,101 @@ function setSize(){const [W,H]=SIZES[ar];cv.width=W;cv.height=H}
 function blit(p){const [W,H]=SIZES[ar],s=1+.05*p;ctx.drawImage(off,W/2-W*s/2,H/2-H*s/2,W*s,H*s)}
 function idle(){setSize();renderCut(0,$('w').value.trim()||'gift');blit(0)}
 
-function sfx(k){
- const t=ac.currentTime,g=ac.createGain();g.connect(dest);g.connect(ac.destination);
- if(k==='pop'){const os=ac.createOscillator();os.frequency.setValueAtTime(900,t);os.frequency.exponentialRampToValueAtTime(120,t+.08);g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);os.connect(g);os.start(t);os.stop(t+.1);return}
- const sr=ac.sampleRate,sh=k==='shutter',n=Math.floor(sr*(sh?.06:.035)),b=ac.createBuffer(1,n,sr),d=b.getChannelData(0);
+function sfx(k,c,out,t){
+ const g=c.createGain();g.connect(out);
+ if(k==='pop'){const os=c.createOscillator();os.frequency.setValueAtTime(900,t);os.frequency.exponentialRampToValueAtTime(120,t+.08);g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.09);os.connect(g);os.start(t);os.stop(t+.1);return}
+ const sr=c.sampleRate,sh=k==='shutter',n=Math.floor(sr*(sh?.06:.035)),b=c.createBuffer(1,n,sr),d=b.getChannelData(0);
  // matched to the reference clip: ~5ms attack, ~25ms decay, flat 1-8kHz noise
  for(let i=0;i<n;i++){const x=i/sr;d[i]=(Math.random()*2-1)*(x<.005?x/.005:Math.exp(-(x-.005)/(sh?.012:.005)))}
- const s=ac.createBufferSource(),h1=ac.createBiquadFilter(),h2=ac.createBiquadFilter(),lp=ac.createBiquadFilter();
+ const s=c.createBufferSource(),h1=c.createBiquadFilter(),h2=c.createBiquadFilter(),lp=c.createBiquadFilter();
  s.buffer=b;h1.type=h2.type='highpass';h1.frequency.value=h2.frequency.value=sh?2500:1300;lp.type='lowpass';lp.frequency.value=9000;
  g.gain.value=(sh?.35:.2)*(.8+Math.random()*.4);
  s.connect(h1);h1.connect(h2);h2.connect(lp);lp.connect(g);s.start(t);
 }
 
-function generate(){
- if(busy)return; const word=$('w').value.trim(); if(!word){$('w').focus();return}
- busy=true;$('go').disabled=true;$('dl').style.display='none';
- $('vid').style.display='none';cv.style.display='block';$('vid').pause();
- seed=(Math.random()*1e9)|0; setSize();
- const cps=+$('cps').value,dur=+$('dur').value,snd=$('snd').value;
- const stream=cv.captureStream(60);
+const tick0=()=>new Promise(r=>setTimeout(r));
+function finish(b,e){
+ blob=b;ext=e;const v=$('vid');v.src=URL.createObjectURL(b);cv.style.display='none';v.style.display='block';v.play().catch(()=>{});
+ $('dl').style.display='block';$('go').disabled=false;$('go').textContent='Regenerate';$('pg').style.width='100%';
+ $('st').textContent='Done. '+(b.size/1048576).toFixed(1)+' MB '+e.toUpperCase();busy=false;
+}
+
+// Fast path: render frame by frame with exact timestamps (no real-time capture, so playback speed is always correct)
+async function recordOffline(word,cps,dur,snd){
+ const FPS=30,[W,H]=SIZES[ar],total=Math.round(dur*FPS),withA=snd!=='none',SR=48000;
+ const vcfg={codec:'avc1.640032',width:W,height:H,bitrate:10e6,framerate:FPS};
+ const acfg={codec:'mp4a.40.2',sampleRate:SR,numberOfChannels:1,bitrate:128000};
+ if(!(await VideoEncoder.isConfigSupported(vcfg)).supported)throw new Error('H.264 encoding not supported');
+ let audio=withA;
+ if(audio&&!(window.AudioEncoder&&(await AudioEncoder.isConfigSupported(acfg)).supported)){audio=false;$('st').textContent='This browser cannot encode sound. Exporting without sound…'}
+ const mo={target:new Mp4Muxer.ArrayBufferTarget(),video:{codec:'avc',width:W,height:H,frameRate:FPS},fastStart:'in-memory'};
+ if(audio)mo.audio={codec:'aac',numberOfChannels:1,sampleRate:SR};
+ const muxer=new Mp4Muxer.Muxer(mo);let err=null;
+ const ve=new VideoEncoder({output:(c,m)=>muxer.addVideoChunk(c,m),error:e=>err=e});ve.configure(vcfg);
+ let last=-1;
+ for(let n=0;n<total;n++){
+  if(err)throw err;
+  const t=n/FPS,idx=Math.floor(t*cps);
+  if(idx!==last){last=idx;renderCut(idx,word)}
+  blit((t*cps)%1);
+  const f=new VideoFrame(cv,{timestamp:Math.round(t*1e6),duration:Math.round(1e6/FPS)});
+  ve.encode(f,{keyFrame:n%FPS===0});f.close();
+  while(ve.encodeQueueSize>6)await new Promise(r=>setTimeout(r,4));
+  if(n%3===0){$('pg').style.width=(n/total*90)+'%';$('st').textContent='Rendering frame '+n+' / '+total;await tick0()}
+ }
+ await ve.flush();if(err)throw err;
+ if(audio){
+  $('st').textContent='Rendering sound…';
+  const oc=new OfflineAudioContext(1,Math.ceil(SR*dur),SR);
+  for(let i=0;i/cps<dur;i++)sfx(snd,oc,oc.destination,i/cps);
+  const pcm=(await oc.startRendering()).getChannelData(0);
+  const ae=new AudioEncoder({output:(c,m)=>muxer.addAudioChunk(c,m),error:e=>err=e});ae.configure(acfg);
+  for(let i=0;i<pcm.length;i+=4800){
+   const part=pcm.slice(i,i+4800),ad=new AudioData({format:'f32-planar',sampleRate:SR,numberOfFrames:part.length,numberOfChannels:1,timestamp:Math.round(i/SR*1e6),data:part});
+   ae.encode(ad);ad.close();
+  }
+  await ae.flush();if(err)throw err;
+ }
+ muxer.finalize();
+ return new Blob([muxer.target.buffer],{type:'video/mp4'});
+}
+
+// Fallback for browsers without WebCodecs: live canvas recording
+function recordLive(word,cps,dur,snd){
+ const stream=cv.captureStream(30);let bus=null;
  if(snd!=='none'){
-  ac=ac||new AudioContext(); ac.resume();
-  if(!nb){nb=ac.createBuffer(1,ac.sampleRate*.2,ac.sampleRate);const d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}
-  dest=ac.createMediaStreamDestination(); dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
+  ac=ac||new AudioContext();ac.resume();
+  dest=ac.createMediaStreamDestination();dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
+  bus=ac.createGain();bus.connect(dest);bus.connect(ac.destination);
  }
  const mt=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(m=>MediaRecorder.isTypeSupported(m))||'';
- const rec=new MediaRecorder(stream,mt?{mimeType:mt,videoBitsPerSecond:12e6}:{videoBitsPerSecond:12e6});
- ext=mt.includes('mp4')?'mp4':'webm'; const chunks=[];
- rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
- rec.onstop=()=>{
-  blob=new Blob(chunks,{type:ext==='mp4'?'video/mp4':'video/webm'});
-  const v=$('vid');v.src=URL.createObjectURL(blob);cv.style.display='none';v.style.display='block';v.play().catch(()=>{});
-  $('dl').style.display='block';$('go').disabled=false;$('go').textContent='Regenerate';
-  $('st').textContent='Done. '+(blob.size/1048576).toFixed(1)+' MB '+ext.toUpperCase();busy=false;
- };
+ const rec=new MediaRecorder(stream,mt?{mimeType:mt,videoBitsPerSecond:10e6}:{videoBitsPerSecond:10e6});
+ const e=mt.includes('mp4')?'mp4':'webm',chunks=[];
+ rec.ondataavailable=ev=>ev.data.size&&chunks.push(ev.data);
+ rec.onstop=()=>finish(new Blob(chunks,{type:e==='mp4'?'video/mp4':'video/webm'}),e);
  let start=0,last=-1;
  const tick=now=>{
-  if(!start)start=now; const t=(now-start)/1000;
-  if(t>=dur){rec.stop();$('pg').style.width='100%';return}
+  if(!start)start=now;const t=(now-start)/1000;
+  if(t>=dur){rec.stop();return}
   const idx=Math.floor(t*cps);
-  if(idx!==last){last=idx;renderCut(idx,word);if(snd!=='none')sfx(snd)}
-  blit((t*cps)%1);
-  $('pg').style.width=(t/dur*100)+'%';$('st').textContent='Rendering… '+t.toFixed(1)+'s / '+dur+'s';
+  if(idx!==last){last=idx;renderCut(idx,word);if(bus)sfx(snd,ac,bus,ac.currentTime)}
+  blit((t*cps)%1);$('pg').style.width=(t/dur*100)+'%';$('st').textContent='Recording live… '+t.toFixed(1)+'s / '+dur+'s';
   requestAnimationFrame(tick);
  };
- rec.start(); requestAnimationFrame(tick);
+ rec.start();requestAnimationFrame(tick);
+}
+
+async function generate(){
+ if(busy)return;const word=$('w').value.trim();if(!word){$('w').focus();return}
+ busy=true;$('go').disabled=true;$('dl').style.display='none';
+ $('vid').pause();$('vid').style.display='none';cv.style.display='block';$('pg').style.width='0';
+ seed=(Math.random()*1e9)|0;setSize();
+ const cps=+$('cps').value,dur=+$('dur').value,snd=$('snd').value;
+ if(window.VideoEncoder&&window.VideoFrame&&window.Mp4Muxer){
+  try{finish(await recordOffline(word,cps,dur,snd),'mp4');return}
+  catch(e){console.warn('WebCodecs path failed, using live recording',e);setSize()}
+ }
+ recordLive(word,cps,dur,snd);
 }
 
 async function save(){
@@ -211,7 +262,7 @@ bind('cps','cpsv',v=>v);bind('zoom','zv',v=>(+v).toFixed(1)+'×');bind('blur','b
 $('w').oninput=()=>{$('cc').textContent=$('w').value.length+'/23';if(!busy)idle()};
 $('w').onkeydown=e=>{if(e.key==='Enter')generate()};
 $('cc').textContent=$('w').value.length+'/23';
-if(!window.MediaRecorder){$('go').disabled=true;$('st').textContent='This browser has no MediaRecorder support. Try Chrome, Edge, Safari 14.1+ or Firefox.'}
+if(!window.VideoEncoder&&!window.MediaRecorder){$('go').disabled=true;$('st').textContent='This browser cannot create videos. Try a recent Chrome, Edge, Safari or Firefox.'}
 idle();
 // ---- ADS: fill these in after AdSense approval, then redeploy ----
 const ADS={client:'',top:'',bottom:''}; // client: 'ca-pub-XXXXXXXXXXXXXXXX', top/bottom: ad slot IDs
