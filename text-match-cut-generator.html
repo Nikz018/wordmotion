@@ -187,15 +187,22 @@ footer a{
   color:var(--mut);
   margin-right:16px;
 }
+
+    /* ---- site header (shared across pages) ---- */
+    .site-h{border-bottom:1px solid var(--line);background:var(--bg)}
+    .site-h .in{max-width:960px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px 22px;flex-wrap:wrap}
+    .site-h .logo{font:700 20px/1 Georgia,"Times New Roman",serif;color:var(--fg);text-decoration:none;letter-spacing:-.02em}
+    .site-h .links{display:flex;gap:4px 20px;flex-wrap:wrap;font-size:14px}
+    .site-h .links a{color:var(--mut);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+    .site-h .links a:hover{color:var(--fg)}
+    .site-h .links a[aria-current="page"]{color:var(--fg);font-weight:600;border-bottom-color:var(--y)}
+    @media(max-width:520px){.site-h .links{gap:4px 10px;font-size:12.5px}}
 </style>
 </head>
 
 <body>
+<header class="site-h"><div class="in"><a class="logo" href="index.html">TextMatch <mark>Studio</mark></a><div class="links" role="navigation" aria-label="Main"><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="text-match-cut-generator.html" aria-current="page">Guide</a><a href="about.html">About</a></div></div></header>
 <main>
-
-<nav>
-  <a href="index.html">&larr; Back to TextMatch Studio</a>
-</nav>
 
 <header class="hero">
   <h1>Text Match Cut <mark>Generator</mark></h1>
@@ -388,7 +395,8 @@ footer a{
 </section>
 
 <footer>
-  <a href="index.html">Generator</a>
+  <a href="index.html">Match Cut Maker</a>
+  <a href="text-behind-image.html">Text Behind Image</a>
   <a href="about.html">About</a>
   <a href="privacy.html">Privacy Policy</a>
   <a href="contact.html">Contact</a>

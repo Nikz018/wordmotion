@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Text Behind Image Maker – Free Online Tool | TextMatch Studio</title>
+<meta name="description" content="Put text behind the subject of any photo for free. Upload an image, drag the text into place and download a PNG. No signup, runs in your browser, nothing is uploaded.">
+<link rel="canonical" href="https://textmatchstudio.com/text-behind-image.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textmatchstudio.com/text-behind-image.html">
+<meta property="og:title" content="Text Behind Image Maker – TextMatch Studio">
+<meta property="og:description" content="Put text behind the subject of your photo. Free, no signup, nothing is uploaded.">
+<meta property="og:site_name" content="TextMatch Studio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Text Behind Image Maker – TextMatch Studio">
+<meta name="twitter:description" content="Put text behind the subject of your photo. Free, runs in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Montserrat:wght@900&family=Oswald:wght@700&family=Playfair+Display:wght@900&family=Inter:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF7;--fg:#1b1b18;--mut:#6d6b63;--card:#fff;--line:#e0ded4;--y:#FFE94A;--on-y:#1b1b18}
+@media (prefers-color-scheme:dark){:root{--bg:#15150f;--fg:#f1efe6;--mut:#a09d90;--card:#1f1f17;--line:#34332a}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+h1{font:700 clamp(30px,6vw,52px)/1.1 Georgia,"Times New Roman",serif;margin:8px 0 6px;letter-spacing:-.02em}
+mark{background:var(--y);color:var(--on-y);padding:0 .12em}
+p.sub{color:var(--mut);margin:0 0 22px}
+a{color:var(--fg)}
+.ad{margin:16px 0;text-align:center;overflow:hidden}
+.ad:empty{display:none}
+.ad small{display:block;font-size:10px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+
+    /* ---- site header (shared across pages) ---- */
+    .site-h{border-bottom:1px solid var(--line);background:var(--bg)}
+    .site-h .in{max-width:960px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px 22px;flex-wrap:wrap}
+    .site-h .logo{font:700 20px/1 Georgia,"Times New Roman",serif;color:var(--fg);text-decoration:none;letter-spacing:-.02em}
+    .site-h .links{display:flex;gap:4px 20px;flex-wrap:wrap;font-size:14px}
+    .site-h .links a{color:var(--mut);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+    .site-h .links a:hover{color:var(--fg)}
+    .site-h .links a[aria-current="page"]{color:var(--fg);font-weight:600;border-bottom-color:var(--y)}
+    @media(max-width:520px){.site-h .links{gap:4px 10px;font-size:12.5px}}
+
+.site-h .in{max-width:1100px}
+/* ---- the tool (always dark, like an editor) ---- */
+.studio{--bg:#0b0b0d;--surface:#141417;--surface2:#1b1b1f;--line:#26262b;--line2:#33333a;--fg:#f4f4f5;--mut:#8e8e98;--acc:#ffd84a;--acc-fg:#14120a;
+  background:var(--bg);color:var(--fg);border:1px solid #2b2b31;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.18);font-size:14px}
+.studio button{font-family:inherit;cursor:pointer}
+.studio .s-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+.studio .s-title{font-weight:700;font-size:15px}
+.studio .s-title span{color:var(--mut);font-weight:400;font-size:12.5px;margin-left:8px}
+.studio .s-actions{display:flex;gap:8px}
+.studio .sbtn{border:1px solid var(--line2);background:var(--surface2);color:var(--fg);padding:8px 14px;border-radius:10px;font-weight:600;font-size:13px;transition:.15s}
+.studio .sbtn:hover{border-color:#4a4a54}
+.studio .sbtn.primary{background:var(--acc);color:var(--acc-fg);border-color:var(--acc)}
+.studio .sbtn:disabled{opacity:.35;cursor:not-allowed}
+.studio .s-body{display:grid;grid-template-columns:minmax(0,1fr) 330px}
+@media(max-width:860px){.studio .s-body{grid-template-columns:1fr}.studio .panel{border-left:0!important;border-top:1px solid var(--line);max-height:none!important}.studio .s-title span{display:none}}
+.studio .workspace{padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-width:0;background:radial-gradient(900px 400px at 50% -10%,#1a1a20 0,transparent 60%),var(--bg)}
+.studio .stage{width:100%;display:flex;align-items:center;justify-content:center;position:relative;min-height:440px}
+.studio .drop{width:100%;max-width:560px;border:1.5px dashed var(--line2);border-radius:18px;padding:56px 22px;text-align:center;background:var(--surface);cursor:pointer;transition:.15s}
+.studio .drop:hover,.studio .drop.dragover{border-color:var(--acc);background:#18170f}
+.studio .drop svg{width:42px;height:42px;color:var(--acc);margin-bottom:12px}
+.studio .drop h2{margin:0 0 6px;font:700 20px/1.25 system-ui,sans-serif;letter-spacing:-.01em;color:var(--fg)}
+.studio .drop p{margin:0;color:var(--mut)}
+.studio .drop .pill{display:inline-block;margin-top:16px;background:var(--acc);color:var(--acc-fg);font-weight:700;padding:10px 18px;border-radius:10px}
+.studio .cvwrap{position:relative;display:none;line-height:0;border-radius:10px;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.55),0 0 0 1px var(--line)}
+.studio .cvwrap canvas{display:block;touch-action:none;cursor:grab}
+.studio .cvwrap canvas.dragging{cursor:grabbing}
+.studio .guide{position:absolute;border:1.5px dashed rgba(255,255,255,.75);border-radius:4px;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.studio .cvwrap:hover .guide,.studio .cvwrap.active .guide{opacity:1}
+.studio .loading{position:absolute;inset:0;background:rgba(11,11,13,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;font-weight:600;z-index:3;line-height:1.4}
+.studio .spin{width:28px;height:28px;border:3px solid #ffffff30;border-top-color:var(--acc);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.studio .hint{color:var(--mut);font-size:12.5px;min-height:18px;text-align:center}
+.studio .hint.err{color:#ff8a8a}
+.studio .hint b{color:var(--fg);font-weight:600}
+.studio .panel{border-left:1px solid var(--line);background:var(--surface);overflow-y:auto;max-height:660px}
+.studio .sec{padding:16px 16px 14px;border-bottom:1px solid var(--line)}
+.studio .sec:last-child{border-bottom:0}
+.studio .sec h3{margin:0 0 12px;font:700 11px/1.2 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.studio .field{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}
+.studio .field:last-child{margin-bottom:0}
+.studio .lbl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mut);font-weight:500}
+.studio .lbl em{font-style:normal;color:var(--fg);font-variant-numeric:tabular-nums}
+.studio textarea,.studio select{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;outline:none;transition:.15s}
+.studio textarea{resize:none;font-weight:600}
+.studio textarea:focus,.studio select:focus{border-color:var(--acc)}
+.studio input[type=range]{width:100%;accent-color:var(--acc);height:18px;margin:0}
+.studio .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.studio .chip{background:var(--bg);color:var(--fg);border:1px solid var(--line2);border-radius:9px;padding:9px 0;font-size:18px;line-height:1;transition:.15s}
+.studio .chip:hover{border-color:#55555f}
+.studio .chip.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset;color:var(--acc)}
+.studio .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.studio .presets .chip{font-size:12px;font-weight:600;padding:10px 4px;font-family:system-ui,sans-serif}
+.studio .seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:3px;gap:3px}
+.studio .seg button{background:transparent;border:0;color:var(--mut);padding:8px;border-radius:8px;font-weight:600;font-size:13px}
+.studio .seg button.on{background:var(--surface2);color:var(--fg);box-shadow:0 0 0 1px var(--line2) inset}
+.studio .colors{display:flex;gap:8px;align-items:center}
+.studio .colors input[type=color]{width:36px;height:36px;padding:0;border:1px solid var(--line2);border-radius:50%;background:none;overflow:hidden;cursor:pointer}
+.studio .colors input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+.studio .colors input[type=color]::-webkit-color-swatch{border:0;border-radius:50%}
+.studio .sw{width:26px;height:26px;border-radius:50%;border:2px solid var(--line2);padding:0}
+.studio .sw:hover{transform:scale(1.1)}
+.studio .toggle{display:flex;align-items:center;justify-content:space-between;font-size:13px}
+.studio .toggle input{appearance:none;-webkit-appearance:none;width:38px;height:22px;background:var(--line2);border-radius:99px;position:relative;cursor:pointer;transition:.15s;margin:0}
+.studio .toggle input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.15s}
+.studio .toggle input:checked{background:var(--acc)}
+.studio .toggle input:checked::after{left:19px;background:var(--acc-fg)}
+.studio .tip{padding:12px 16px;color:var(--mut);font-size:12px;line-height:1.5}
+
+@media(max-width:860px){.studio .stage{min-height:240px}}
+/* ---- content ---- */
+.info{max-width:720px;margin:48px auto 0}
+.info h2{font:700 26px/1.2 Georgia,"Times New Roman",serif;margin:34px 0 10px}
+.info p,.info li{line-height:1.65}
+.info li{margin-bottom:8px}
+details.faq{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;margin:8px 0}
+details.faq summary{cursor:pointer;font-weight:600}
+details.faq p{margin:8px 0 0;color:var(--mut)}
+.cross{max-width:720px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cross h2{font:700 21px/1.2 Georgia,serif;margin:0 0 4px}
+.cross p{margin:0;color:var(--mut)}
+.cross a.btn{display:inline-block;padding:12px 18px;border-radius:11px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:700}
+footer{max-width:720px;margin:44px auto 0;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+footer a{color:var(--mut);margin-right:14px}
+#cb{display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:620px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:9}
+#cb p{margin:0;flex:1 1 260px}
+#cb button{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+#cb button.p{background:var(--y);color:var(--on-y);border-color:var(--y);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="site-h"><div class="in"><a class="logo" href="index.html">TextMatch <mark>Studio</mark></a><div class="links" role="navigation" aria-label="Main"><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html" aria-current="page">Text Behind Image</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a></div></div></header>
+<main>
+  <h1>Put text <mark>behind</mark> your photo.</h1>
+  <p class="sub">Upload a photo, drag the text anywhere, download the PNG. Free, no signup, and your photo never leaves your browser.</p>
+  <div class="ad" id="ad-top"></div>
+
+  <section class="studio" id="studio" aria-label="Text behind image maker">
+    <div class="s-bar">
+      <div class="s-title">Text Behind Image<span>Drag the text · pick a preset · download PNG</span></div>
+      <div class="s-actions">
+        <button class="sbtn" id="newBtn" style="display:none">New photo</button>
+        <button class="sbtn primary" id="dl" disabled>Download PNG</button>
+      </div>
+    </div>
+    <div class="s-body">
+      <div class="workspace">
+        <div class="stage" id="stage">
+          <div class="drop" id="drop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>
+            <h2>Drop a photo to get started</h2>
+            <p>Works best with a person or one clear main subject</p>
+            <span class="pill">Choose photo</span>
+          </div>
+          <div class="cvwrap" id="wrap">
+            <canvas id="cv"></canvas>
+            <div class="guide" id="guide"></div>
+            <div class="loading" id="loading"><div class="spin"></div><div id="loadMsg">Loading…</div></div>
+          </div>
+          <input type="file" id="file" accept="image/*" hidden>
+        </div>
+        <div class="hint" id="hint">Your photo never leaves your device.</div>
+      </div>
+
+      <aside class="panel">
+        <div class="sec"><h3>Style presets</h3><div class="presets" id="presets"></div></div>
+        <div class="sec">
+          <h3>Text</h3>
+          <div class="field"><textarea id="text" rows="2" placeholder="Type your text">HELLO</textarea></div>
+          <div class="field"><div class="lbl">Font</div><div class="chips" id="fonts"></div></div>
+          <div class="field"><div class="lbl">Color</div><div class="colors" id="colors"><input type="color" id="color" value="#ffffff" aria-label="Text color"></div></div>
+          <div class="field"><div class="lbl">Size <em id="v_size"></em></div><input type="range" id="size" min="5" max="90" value="35"></div>
+          <div class="field"><div class="lbl">Letter spacing <em id="v_ls"></em></div><input type="range" id="ls" min="-5" max="40" value="0"></div>
+          <div class="field"><div class="lbl">Rotation <em id="v_rot"></em></div><input type="range" id="rot" min="-90" max="90" value="0"></div>
+        </div>
+        <div class="sec">
+          <h3>Effects</h3>
+          <div class="field"><div class="lbl">Type</div><div class="seg" id="styleSeg"><button data-v="fill" class="on">Filled</button><button data-v="outline">Outline</button></div></div>
+          <div class="field" id="owField"><div class="lbl">Outline width <em id="v_ow"></em></div><input type="range" id="ow" min="1" max="20" value="4"></div>
+          <div class="field"><div class="lbl">Blend mode</div>
+            <select id="blend" aria-label="Blend mode">
+              <option value="source-over">Normal</option><option value="overlay">Overlay</option><option value="soft-light">Soft light</option>
+              <option value="screen">Screen</option><option value="multiply">Multiply</option><option value="difference">Difference</option>
+            </select></div>
+          <div class="field"><div class="lbl">Opacity <em id="v_opacity"></em></div><input type="range" id="opacity" min="10" max="100" value="100"></div>
+          <div class="field"><div class="lbl">Glow <em id="v_glow"></em></div><input type="range" id="glow" min="0" max="60" value="0"></div>
+        </div>
+        <div class="sec">
+          <h3>Subject cutout</h3>
+          <div class="field"><div class="lbl">Edge smoothness <em id="v_soft"></em></div><input type="range" id="soft" min="5" max="80" value="30"></div>
+          <label class="toggle">Swap subject / background <input type="checkbox" id="inv"></label>
+        </div>
+        <div class="tip">Tip: drag the text anywhere on the photo. If the wrong part is in front, use the swap switch.</div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="ad" id="ad-bottom"></div>
+
+  <section class="info">
+    <h2>What is the text behind image effect?</h2>
+    <p>The text behind image effect places a word or phrase behind the main subject of a photo, so the subject appears to stand in front of the lettering. You see it on magazine covers, YouTube thumbnails, posters and social media posts because it adds depth and makes a simple photo look designed.</p>
+    <p>It works by finding the outline of the subject, cutting it out, and layering it above the text. TextMatch Studio does this automatically in your browser, so you only need a photo and a word.</p>
+
+    <h2>How to put text behind an image</h2>
+    <ol>
+      <li><b>Upload a photo.</b> Drop an image into the tool. The AI finds the subject in a few seconds.</li>
+      <li><b>Type your text.</b> Short, bold words such as a name, a place or a title work best.</li>
+      <li><b>Drag it into place.</b> Click and drag the text anywhere on the photo. Place it behind the head or shoulders for the classic look.</li>
+      <li><b>Style it.</b> Pick a preset, then adjust the font, size, color, blend mode, outline and glow.</li>
+      <li><b>Download the PNG.</b> Save the finished image and use it anywhere.</li>
+    </ol>
+
+    <h2>Tips for a cleaner result</h2>
+    <ul>
+      <li><b>Choose a photo with a clear subject.</b> Good lighting and some contrast between the person and the background give the sharpest edges.</li>
+      <li><b>Use big text.</b> The effect is strongest when the lettering is large and the subject overlaps part of it.</li>
+      <li><b>Try a blend mode.</b> Overlay and Soft light let the photo show through the letters, which keeps landscapes and busy backgrounds visible.</li>
+      <li><b>Use Outline for detailed backgrounds.</b> An outlined word keeps the scene visible while still giving the layered look.</li>
+      <li><b>Adjust edge smoothness.</b> A lower value gives crisper edges, a higher value gives softer, more natural blending.</li>
+    </ul>
+
+    <h2>Ideas and use cases</h2>
+    <ul>
+      <li><b>YouTube thumbnails</b> with the video title behind the presenter.</li>
+      <li><b>Instagram and Pinterest posts</b> with a bold word behind a portrait.</li>
+      <li><b>Posters and flyers</b> with the event name behind a performer.</li>
+      <li><b>Profile banners</b> for LinkedIn, X and Facebook.</li>
+      <li><b>Album, podcast and playlist covers.</b></li>
+    </ul>
+
+    <h2>Private by design</h2>
+    <p>Your photo is processed on your own device. It is not uploaded, stored or seen by us. The first time you use the tool, the AI model files download to your browser and are cached for next time.</p>
+
+    <h2 id="faq">Frequently asked questions</h2>
+    <details class="faq"><summary>Is the text behind image maker free?</summary><p>Yes. TextMatch Studio is free to use, with no account, no signup and no watermark on your downloaded image.</p></details>
+<details class="faq"><summary>Are my photos uploaded to a server?</summary><p>No. Your photo is processed entirely inside your browser, including the AI step that finds the subject. The first time you use the tool, the AI model files are downloaded to your device and cached, but your photo is never sent anywhere.</p></details>
+<details class="faq"><summary>What kind of photo works best?</summary><p>Photos with one clear main subject, especially people, work best. Good lighting and a visible gap between the subject and the background give cleaner edges. Photos where the subject is very small or blends into the background are harder to cut out.</p></details>
+<details class="faq"><summary>Does it work with pets, objects or products?</summary><p>The cutout model is designed mainly for people, so results with pets, objects and products vary. If the result is not clean, try a photo with a plainer background.</p></details>
+<details class="faq"><summary>The wrong part of my photo is in front of the text. How do I fix it?</summary><p>Turn on the "Swap subject / background" switch in the Subject cutout section. You can also adjust Edge smoothness to make the edges softer or sharper.</p></details>
+<details class="faq"><summary>What size is the downloaded image?</summary><p>You get a PNG. To keep the tool fast on every device, photos larger than 1600 pixels on the longest side are scaled down to 1600 pixels before processing.</p></details>
+<details class="faq"><summary>Can I use the images commercially?</summary><p>Yes, you can use the images you create in your own content, including monetized channels, as long as you have the rights to the original photo.</p></details>
+<details class="faq"><summary>Does it work on my phone?</summary><p>Yes, on a recent version of Chrome, Safari, Edge or Firefox. You can drag the text with your finger. Older phones may take a little longer to find the subject.</p></details>
+  </section>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the text behind image maker free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. TextMatch Studio is free to use, with no account, no signup and no watermark on your downloaded image."}}, {"@type": "Question", "name": "Are my photos uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your photo is processed entirely inside your browser, including the AI step that finds the subject. The first time you use the tool, the AI model files are downloaded to your device and cached, but your photo is never sent anywhere."}}, {"@type": "Question", "name": "What kind of photo works best?", "acceptedAnswer": {"@type": "Answer", "text": "Photos with one clear main subject, especially people, work best. Good lighting and a visible gap between the subject and the background give cleaner edges. Photos where the subject is very small or blends into the background are harder to cut out."}}, {"@type": "Question", "name": "Does it work with pets, objects or products?", "acceptedAnswer": {"@type": "Answer", "text": "The cutout model is designed mainly for people, so results with pets, objects and products vary. If the result is not clean, try a photo with a plainer background."}}, {"@type": "Question", "name": "The wrong part of my photo is in front of the text. How do I fix it?", "acceptedAnswer": {"@type": "Answer", "text": "Turn on the \"Swap subject / background\" switch in the Subject cutout section. You can also adjust Edge smoothness to make the edges softer or sharper."}}, {"@type": "Question", "name": "What size is the downloaded image?", "acceptedAnswer": {"@type": "Answer", "text": "You get a PNG. To keep the tool fast on every device, photos larger than 1600 pixels on the longest side are scaled down to 1600 pixels before processing."}}, {"@type": "Question", "name": "Can I use the images commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can use the images you create in your own content, including monetized channels, as long as you have the rights to the original photo."}}, {"@type": "Question", "name": "Does it work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on a recent version of Chrome, Safari, Edge or Firefox. You can drag the text with your finger. Older phones may take a little longer to find the subject."}}]}</script>
+
+  <div class="cross">
+    <div><h2>Make a text match cut video</h2><p>Our other free tool: highlight one word and get a kinetic newspaper-style MP4.</p></div>
+    <a class="btn" href="index.html">Open Match Cut Maker</a>
+  </div>
+
+  <footer><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a><a href="contact.html">Contact</a><br><span>Photos are edited in your browser and never uploaded.</span></footer>
+</main>
+<div id="cb">
+  <p>We use cookies for ads. Choose personalized ads, or keep ads non-personalized. The tool works either way.</p>
+  <button id="cn">Non-personalized</button><button id="ca" class="p">Accept</button>
+</div>
+
+<script type="module">
+import { ImageSegmenter, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm";
+
+const WASM = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm";
+const MODEL = "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite";
+const MAX = 1600;
+
+const FONTS = [
+  { n: "Anton", w: 400 }, { n: "Bebas Neue", w: 400 }, { n: "Oswald", w: 700 }, { n: "Archivo Black", w: 400 },
+  { n: "Montserrat", w: 900 }, { n: "Playfair Display", w: 900 }, { n: "Inter", w: 800 }
+];
+const PRESETS = {
+  "Subtle Overlay": { style: "fill", blend: "overlay", opacity: 90, glow: 0, color: "#ffffff" },
+  "Bold Poster":    { style: "fill", blend: "source-over", opacity: 100, glow: 0, color: "#ffffff" },
+  "Outline":        { style: "outline", blend: "source-over", opacity: 100, glow: 0, color: "#ffffff" },
+  "Glow":           { style: "fill", blend: "screen", opacity: 80, glow: 25, color: "#ffe9a8" },
+  "Invert":         { style: "fill", blend: "difference", opacity: 100, glow: 0, color: "#ffffff" },
+  "Ghost":          { style: "fill", blend: "source-over", opacity: 35, glow: 0, color: "#ffffff" }
+};
+const SWATCHES = ["#ffffff", "#0b0b0d", "#ffd84a", "#ff5a5a", "#4dd2ff"];
+
+const $ = id => document.getElementById(id);
+const cv = $("cv"), ctx = cv.getContext("2d"), wrap = $("wrap"), guide = $("guide");
+const S = { text: "HELLO", font: "Anton", color: "#ffffff", opacity: 100, size: 35, ls: 0, rot: 0,
+            style: "fill", ow: 4, blend: "overlay", glow: 0, soft: 30, inv: false, px: 0.5, py: 0.4 };
+let base = null, cutout = null, maskArr = null, mw = 0, mh = 0, autoInvert = false, segmenter = null;
+let tb = { w: 0, h: 0 };
+
+const hint = (t, err = false) => { $("hint").innerHTML = t; $("hint").className = "hint" + (err ? " err" : ""); };
+const busy = (on, msg) => { $("loading").style.display = on ? "flex" : "none"; if (msg) $("loadMsg").textContent = msg; };
+const fontDef = () => FONTS.find(f => f.n === S.font) || FONTS[0];
+
+/* ---------- UI build ---------- */
+FONTS.forEach(f => {
+  const b = document.createElement("button");
+  b.className = "chip" + (f.n === S.font ? " on" : ""); b.textContent = "Aa"; b.title = f.n;
+  b.style.fontFamily = `"${f.n}"`; b.style.fontWeight = f.w;
+  b.onclick = async () => { S.font = f.n; markFont(); await loadFont(); schedule(); };
+  b.dataset.f = f.n; $("fonts").appendChild(b);
+});
+const markFont = () => document.querySelectorAll("#fonts .chip").forEach(b => b.classList.toggle("on", b.dataset.f === S.font));
+
+SWATCHES.forEach(c => {
+  const b = document.createElement("button"); b.className = "sw"; b.style.background = c;
+  b.onclick = () => { S.color = c; $("color").value = c; clearPreset(); schedule(); };
+  $("colors").appendChild(b);
+});
+
+Object.keys(PRESETS).forEach(n => {
+  const b = document.createElement("button"); b.className = "chip"; b.textContent = n; b.dataset.p = n;
+  b.onclick = () => applyPreset(n); $("presets").appendChild(b);
+});
+const clearPreset = () => document.querySelectorAll("#presets .chip").forEach(b => b.classList.remove("on"));
+
+function syncUI() {
+  for (const k of ["size", "ls", "rot", "ow", "opacity", "glow", "soft"]) {
+    $(k).value = S[k];
+    const v = $("v_" + k); if (v) v.textContent = k === "rot" ? S[k] + "°" : (k === "opacity" || k === "soft") ? S[k] + "%" : S[k];
+  }
+  $("color").value = S.color; $("blend").value = S.blend; $("inv").checked = S.inv;
+  document.querySelectorAll("#styleSeg button").forEach(b => b.classList.toggle("on", b.dataset.v === S.style));
+  $("owField").style.display = S.style === "outline" ? "flex" : "none";
+}
+function applyPreset(n) {
+  Object.assign(S, PRESETS[n]); syncUI();
+  document.querySelectorAll("#presets .chip").forEach(b => b.classList.toggle("on", b.dataset.p === n));
+  schedule();
+}
+
+// generic bindings
+for (const k of ["size", "ls", "rot", "ow", "opacity", "glow"]) $(k).addEventListener("input", e => { S[k] = +e.target.value; syncUI(); if (k !== "size" && k !== "ls" && k !== "rot") clearPreset(); schedule(); });
+$("text").addEventListener("input", e => { S.text = e.target.value; schedule(); });
+$("color").addEventListener("input", e => { S.color = e.target.value; clearPreset(); schedule(); });
+$("blend").addEventListener("input", e => { S.blend = e.target.value; clearPreset(); schedule(); });
+$("soft").addEventListener("input", e => { S.soft = +e.target.value; syncUI(); if (maskArr) { buildCutout(); schedule(); } });
+$("inv").addEventListener("input", e => { S.inv = e.target.checked; if (maskArr) { buildCutout(); schedule(); } });
+$("styleSeg").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.style = b.dataset.v; syncUI(); clearPreset(); schedule(); });
+
+/* ---------- Model ---------- */
+async function getSegmenter() {
+  if (segmenter) return segmenter;
+  busy(true, "Loading AI model (first time only)…");
+  const fileset = await FilesetResolver.forVisionTasks(WASM);
+  const make = delegate => ImageSegmenter.createFromOptions(fileset, {
+    baseOptions: { modelAssetPath: MODEL, delegate }, runningMode: "IMAGE", outputConfidenceMasks: true, outputCategoryMask: false
+  });
+  try { segmenter = await make("GPU"); } catch { segmenter = await make("CPU"); }
+  return segmenter;
+}
+async function segment() {
+  const seg = await getSegmenter();
+  busy(true, "Finding the subject…");
+  await new Promise(r => setTimeout(r, 40));
+  const res = seg.segment(base);
+  const m = res.confidenceMasks[0];
+  mw = m.width; mh = m.height;
+  maskArr = new Float32Array(m.getAsFloat32Array());
+  res.close?.();
+  let sum = 0, n = 0; // border heuristic: subjects rarely cover the borders
+  for (let x = 0; x < mw; x++) { sum += maskArr[x] + maskArr[(mh - 1) * mw + x]; n += 2; }
+  for (let y = 0; y < mh; y++) { sum += maskArr[y * mw] + maskArr[y * mw + mw - 1]; n += 2; }
+  autoInvert = (sum / n) > 0.5;
+}
+function buildCutout() {
+  const w = base.width, h = base.height;
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const cx = c.getContext("2d"); cx.drawImage(base, 0, 0);
+  const id = cx.getImageData(0, 0, w, h), d = id.data;
+  const soft = S.soft / 100, lo = 0.5 - soft / 2, hi = 0.5 + soft / 2, flip = autoInvert !== S.inv;
+  for (let y = 0; y < h; y++) {
+    const my = Math.min(mh - 1, Math.floor(y * mh / h));
+    for (let x = 0; x < w; x++) {
+      const mx = Math.min(mw - 1, Math.floor(x * mw / w));
+      let v = maskArr[my * mw + mx]; if (flip) v = 1 - v;
+      let t = (v - lo) / (hi - lo); t = t < 0 ? 0 : t > 1 ? 1 : t;
+      d[(y * w + x) * 4 + 3] = Math.round(t * t * (3 - 2 * t) * 255);
+    }
+  }
+  cx.putImageData(id, 0, 0); cutout = c;
+}
+
+/* ---------- Render ---------- */
+const loadedFonts = new Set();
+async function loadFont() {
+  const f = fontDef(); if (loadedFonts.has(f.n)) return;
+  try { await document.fonts.load(`${f.w} 100px "${f.n}"`); } catch {}
+  loadedFonts.add(f.n);
+}
+let raf = 0;
+function schedule() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); }
+
+function render() {
+  if (!base) return;
+  const w = base.width, h = base.height, f = fontDef();
+  if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; fit(); }
+  ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  ctx.drawImage(base, 0, 0);
+
+  const size = S.size / 100 * w;
+  ctx.save();
+  ctx.font = `${f.w} ${size}px "${f.n}", sans-serif`;
+  ctx.textBaseline = "middle"; ctx.textAlign = "left";
+  const sp = S.ls / 100 * size * 0.25;
+  const lines = (S.text || " ").split("\n"), lh = size * 1.05;
+  const rows = lines.map(line => {
+    const chars = [...line], widths = chars.map(ch => ctx.measureText(ch).width + sp);
+    return { chars, widths, total: widths.reduce((a, b) => a + b, 0) - sp };
+  });
+  tb = { w: Math.max(...rows.map(r => r.total), 1), h: lines.length * lh };
+
+  ctx.globalAlpha = S.opacity / 100;
+  ctx.globalCompositeOperation = S.blend;
+  ctx.fillStyle = ctx.strokeStyle = S.color;
+  ctx.lineJoin = "round"; ctx.lineWidth = S.ow / 1000 * w;
+  if (S.glow > 0) { ctx.shadowColor = S.color; ctx.shadowBlur = S.glow / 1000 * w; }
+  ctx.translate(S.px * w, S.py * h);
+  ctx.rotate(S.rot * Math.PI / 180);
+  rows.forEach((r, i) => {
+    let x = -r.total / 2; const y = (i - (lines.length - 1) / 2) * lh;
+    r.chars.forEach((ch, k) => { S.style === "outline" ? ctx.strokeText(ch, x, y) : ctx.fillText(ch, x, y); x += r.widths[k]; });
+  });
+  ctx.restore();
+  ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  if (cutout) ctx.drawImage(cutout, 0, 0);
+  placeGuide();
+}
+function placeGuide() {
+  const w = base.width, h = base.height, pad = 0.02 * w;
+  const gw = tb.w + pad * 2, gh = tb.h + pad;
+  Object.assign(guide.style, {
+    left: ((S.px * w - gw / 2) / w * 100) + "%", top: ((S.py * h - gh / 2) / h * 100) + "%",
+    width: (gw / w * 100) + "%", height: (gh / h * 100) + "%", transform: `rotate(${S.rot}deg)`
+  });
+}
+function fit() {
+  if (!base) return;
+  const aw = Math.max(240, $("stage").clientWidth - 8), ah = Math.min(600, Math.max(280, window.innerHeight - 260));
+  const sc = Math.min(aw / base.width, ah / base.height);
+  cv.style.width = Math.round(base.width * sc) + "px"; cv.style.height = Math.round(base.height * sc) + "px";
+}
+window.addEventListener("resize", fit);
+
+/* ---------- Drag to move ---------- */
+let drag = null;
+const toCanvas = e => { const r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * cv.width / r.width, y: (e.clientY - r.top) * cv.height / r.height }; };
+function hitText(p) {
+  const dx = p.x - S.px * cv.width, dy = p.y - S.py * cv.height, a = -S.rot * Math.PI / 180;
+  const lx = dx * Math.cos(a) - dy * Math.sin(a), ly = dx * Math.sin(a) + dy * Math.cos(a), pad = 0.03 * cv.width;
+  return Math.abs(lx) <= tb.w / 2 + pad && Math.abs(ly) <= tb.h / 2 + pad;
+}
+cv.addEventListener("pointerdown", e => {
+  if (!base || $("loading").style.display === "flex") return;
+  cv.setPointerCapture(e.pointerId);
+  const p = toCanvas(e), inside = hitText(p);
+  drag = inside ? { dx: S.px * cv.width - p.x, dy: S.py * cv.height - p.y } : { dx: 0, dy: 0 };
+  if (!inside) { S.px = p.x / cv.width; S.py = p.y / cv.height; schedule(); }
+  cv.classList.add("dragging"); wrap.classList.add("active");
+});
+cv.addEventListener("pointermove", e => {
+  if (!drag) return;
+  const p = toCanvas(e);
+  S.px = Math.min(1, Math.max(0, (p.x + drag.dx) / cv.width));
+  S.py = Math.min(1, Math.max(0, (p.y + drag.dy) / cv.height));
+  schedule();
+});
+const endDrag = () => { drag = null; cv.classList.remove("dragging"); wrap.classList.remove("active"); };
+cv.addEventListener("pointerup", endDrag); cv.addEventListener("pointercancel", endDrag);
+
+/* ---------- Load photo ---------- */
+async function handleFile(file) {
+  if (!file || !file.type.startsWith("image/")) return;
+  try {
+    $("dl").disabled = true; hint("Preparing photo…");
+    const url = URL.createObjectURL(file), im = new Image(); im.src = url; await im.decode();
+    const s = Math.min(1, MAX / Math.max(im.naturalWidth, im.naturalHeight));
+    base = document.createElement("canvas");
+    base.width = Math.round(im.naturalWidth * s); base.height = Math.round(im.naturalHeight * s);
+    base.getContext("2d").drawImage(im, 0, 0, base.width, base.height); URL.revokeObjectURL(url);
+
+    $("drop").style.display = "none"; wrap.style.display = "inline-block"; $("newBtn").style.display = "";
+    cutout = null; maskArr = null; await loadFont(); render(); busy(true, "Loading…");
+    await segment(); buildCutout(); busy(false); render();
+    $("dl").disabled = false;
+    hint("<b>Drag the text</b> anywhere on the photo, then pick a preset or tweak the sliders.");
+  } catch (err) {
+    console.error(err); busy(false);
+    $("dl").disabled = !cutout;
+    hint("Something went wrong: " + (err.message || err), true);
+  }
+}
+$("drop").onclick = () => $("file").click();
+$("newBtn").onclick = () => $("file").click();
+$("file").onchange = e => { handleFile(e.target.files[0]); e.target.value = ""; };
+const stage = $("stage");
+stage.addEventListener("dragover", e => { e.preventDefault(); $("drop").classList.add("dragover"); });
+stage.addEventListener("dragleave", () => $("drop").classList.remove("dragover"));
+stage.addEventListener("drop", e => { e.preventDefault(); $("drop").classList.remove("dragover"); handleFile(e.dataTransfer.files[0]); });
+
+$("dl").onclick = () => cv.toBlob(b => {
+  const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "text-behind-image.png"; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}, "image/png");
+
+syncUI(); applyPreset("Subtle Overlay"); markFont(); loadFont();
+</script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  // ---- ADS: fill these in after AdSense approval (same values as index.html), then redeploy ----
+  const ADS = {client: '', top: '', bottom: ''}; // client: 'ca-pub-XXXXXXXXXXXXXXXX', top/bottom: ad slot IDs
+  function loadAds(npa) {
+    if (!ADS.client) return;
+    window.adsbygoogle = window.adsbygoogle || []; if (npa) adsbygoogle.requestNonPersonalizedAds = 1;
+    const s = document.createElement('script'); s.async = true; s.crossOrigin = 'anonymous';
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + ADS.client; document.head.appendChild(s);
+    [['ad-top', ADS.top], ['ad-bottom', ADS.bottom]].forEach(([id, slot]) => {
+      if (!slot) return;
+      $(id).innerHTML = '<small>Advertisement</small><ins class="adsbygoogle" style="display:block" data-ad-client="' + ADS.client + '" data-ad-slot="' + slot + '" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  }
+  let c = null; try {c = localStorage.getItem('ad-consent')} catch (e) { }
+  if (c) {loadAds(c === 'npa'); return }
+  if (!ADS.client) return;
+  const pick = v => {try {localStorage.setItem('ad-consent', v)} catch (e) { } $('cb').style.display = 'none'; loadAds(v === 'npa')};
+  $('cb').style.display = 'flex'; $('ca').onclick = () => pick('all'); $('cn').onclick = () => pick('npa');
+})();
+</script>
+</body>
+</html>

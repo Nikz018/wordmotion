@@ -1,50 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact – TextMatch Studio</title>
+<style>
+:root{--bg:#FAFAF7;--fg:#1b1b18;--mut:#6d6b63;--card:#fff;--line:#e0ded4;--y:#FFE94A;--on-y:#1b1b18}
+@media(prefers-color-scheme:dark){:root{--bg:#15150f;--fg:#f1efe6;--mut:#a09d90;--card:#1f1f17;--line:#34332a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,sans-serif}
+mark{background:var(--y);color:var(--on-y);padding:0 .12em}
+main{max-width:720px;margin:0 auto;padding:30px 18px 60px}
+h1,h2{font-family:Georgia,serif}
+a{color:var(--fg)}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Contact - Match Cut Maker</title>
-    <style>
-        body {
-            font: 16px/1.65 system-ui, sans-serif;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 28px 18px;
-            background: #FAFAF7;
-            color: #1b1b18
-        }
+    /* ---- site header (shared across pages) ---- */
+    .site-h{border-bottom:1px solid var(--line);background:var(--bg)}
+    .site-h .in{max-width:960px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px 22px;flex-wrap:wrap}
+    .site-h .logo{font:700 20px/1 Georgia,"Times New Roman",serif;color:var(--fg);text-decoration:none;letter-spacing:-.02em}
+    .site-h .links{display:flex;gap:4px 20px;flex-wrap:wrap;font-size:14px}
+    .site-h .links a{color:var(--mut);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+    .site-h .links a:hover{color:var(--fg)}
+    .site-h .links a[aria-current="page"]{color:var(--fg);font-weight:600;border-bottom-color:var(--y)}
+    @media(max-width:520px){.site-h .links{gap:4px 10px;font-size:12.5px}}
 
-        h1,
-        h2 {
-            font-family: Georgia, serif
-        }
-
-        a {
-            color: #1b1b18
-        }
-
-        @media(prefers-color-scheme:dark) {
-            body {
-                background: #15150f;
-                color: #f1efe6
-            }
-
-            a {
-                color: #f1efe6
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <p><a href="index.html">&larr; Back to the tool</a></p>
-    <h1>Contact</h1>
-    <p>Questions, bug reports, feature ideas or business enquiries: email <b>support@textmatchstudio.com</b>. We usually
-        reply within a few days.</p>
-    <p>If something looks wrong in a video, please include your browser and device, the word you used and a short
-        description. It helps us reproduce the problem.</p>
-    <p>For privacy questions, see the <a href="privacy.html">Privacy Policy</a>.</p>
-</body>
-
-</html>
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+footer a{color:var(--mut);margin-right:14px}
+</style></head><body>
+<header class="site-h"><div class="in"><a class="logo" href="index.html">TextMatch <mark>Studio</mark></a><div class="links" role="navigation" aria-label="Main"><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a></div></div></header>
+<main>
+<h1>Contact</h1>
+<p>Questions, bug reports, feature ideas or business enquiries: email <b>support@textmatchstudio.com</b>. We usually reply within a few days.</p>
+<p>If something looks wrong in a video or an image, please include which tool you used, your browser and device, and a short description. For the match cut tool, include the word you used. It helps us reproduce the problem.</p>
+<p>For privacy questions, see the <a href="privacy.html">Privacy Policy</a>.</p>
+<footer><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a><a href="contact.html">Contact</a></footer>
+</main>
+</body></html>
