@@ -421,7 +421,7 @@
 
     .tcards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px
     }
 
@@ -484,9 +484,7 @@
 <body>
   <header class="site-h">
     <div class="in"><a class="logo" href="index.html">TextMatch <mark>Studio</mark></a>
-      <div class="links" role="navigation" aria-label="Main"><a href="index.html" aria-current="page">Match Cut
-          Maker</a><a href="text-behind-image.html">Text Behind Image</a><a
-          href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a></div>
+      <div class="links" role="navigation" aria-label="Main"><a href="index.html" aria-current="page">Match Cut</a><a href="text-behind-image.html">Text Behind</a><a href="freeze-frame-video-maker.html">Freeze Frame</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a></div>
     </div>
   </header>
   <main>
@@ -558,6 +556,7 @@
               class="go2">Open tool &rarr;</span>
           </div>
         </a>
+      <a class="tcard" href="freeze-frame-video-maker.html"><svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#25252b"/><rect x="12" y="16" width="40" height="32" rx="5" fill="none" stroke="#FFE94A" stroke-width="3"/><rect x="25" y="25" width="5" height="14" rx="1.5" fill="#FFE94A"/><rect x="34" y="25" width="5" height="14" rx="1.5" fill="#FFE94A"/></svg><div><h3>Freeze Frame Video Maker</h3><p>Freeze moments in your clip, add a record scratch, captions and a rewind, then export an MP4.</p><span class="go2">Open tool &rarr;</span></div></a>
       </div>
     </section>
     <section class="info" id="how">
@@ -644,7 +643,7 @@
     </section>
     <script
       type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my word or my video uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side."}}, {"@type": "Question", "name": "What file format do I get?", "acceptedAnswer": {"@type": "Answer", "text": "MP4 (H.264 video with AAC sound) in modern browsers. Very old browsers fall back to a live recording that may be WebM. If an editor won't accept WebM, convert it with a free tool such as HandBrake or CapCut."}}, {"@type": "Question", "name": "Which browsers and devices work?", "acceptedAnswer": {"@type": "Answer", "text": "A recent version of Chrome, Edge, Safari or Firefox on desktop works best. Phones work too, but rendering a 1080 by 1920 video is heavy, so older phones may be slow. A laptop gives the smoothest result."}}, {"@type": "Question", "name": "How long does it take to generate a video?", "acceptedAnswer": {"@type": "Answer", "text": "Usually a few seconds. Frames are rendered one by one and encoded with your browser's built-in video encoder, so the speed depends on your device. Keep the tab open until it finishes. Browsers without that encoder fall back to a live recording, which takes as long as the video itself."}}, {"@type": "Question", "name": "What resolution is the output?", "acceptedAnswer": {"@type": "Answer", "text": "1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok."}}, {"@type": "Question", "name": "Can I use the videos commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool."}}, {"@type": "Question", "name": "Can I write my own sentences for the frames?", "acceptedAnswer": {"@type": "Answer", "text": "Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word."}}, {"@type": "Question", "name": "Does it work with words in other languages?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but the frames use a serif font, and scripts it doesn't cover fall back to your device's default font, so the look can vary. Latin-script words look the most consistent."}}, {"@type": "Question", "name": "The video looks choppy. What can I do?", "acceptedAnswer": {"@type": "Answer", "text": "Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw."}}]}</script>
-    <footer><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a
+    <footer><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="freeze-frame-video-maker.html">Freeze Frame</a><a
         href="text-match-cut-generator.html">Guide</a><a href="privacy.html">Privacy Policy</a><a
         href="about.html">About</a><a href="contact.html">Contact</a><span>Videos are made in your browser and never
         uploaded.</span></footer>
