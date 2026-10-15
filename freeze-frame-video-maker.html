@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Freeze Frame Video Maker – Free Online Tool | TextMatch Studio</title>
 <meta name="description" content="Make a freeze frame video for free. Freeze the perfect moment, add a record scratch, caption and rewind, and export an MP4. No signup, runs in your browser, nothing is uploaded.">
-<link rel="canonical" href="https://textmatchstudio.com/freeze-frame-video-maker.html">
+<link rel="canonical" href="https://textmatchstudio.com/freeze-frame-video-maker">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textmatchstudio.com/freeze-frame-video-maker.html">
+<meta property="og:url" content="https://textmatchstudio.com/freeze-frame-video-maker">
 <meta property="og:title" content="Freeze Frame Video Maker – TextMatch Studio">
 <meta property="og:description" content="Freeze the perfect moment, add a record scratch, caption and rewind. Free, no signup, nothing is uploaded.">
 <meta property="og:site_name" content="TextMatch Studio">
@@ -198,7 +198,7 @@ footer a{color:var(--mut);margin-right:14px}
 </head>
 <body>
 
-<header class="site-h"><div class="in"><a class="logo" href="index.html">TextMatch <mark>Studio</mark></a><div class="links" role="navigation" aria-label="Main"><a href="index.html">Match Cut</a><a href="text-behind-image.html">Text Behind</a><a href="freeze-frame-video-maker.html" aria-current="page">Freeze Frame</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a></div></div></header>
+<header class="site-h"><div class="in"><a class="logo" href="/">TextMatch <mark>Studio</mark></a><div class="links" role="navigation" aria-label="Main"><a href="/">Match Cut</a><a href="/text-behind-image">Text Behind</a><a href="/freeze-frame-video-maker" aria-current="page">Freeze Frame</a><a href="/text-match-cut-generator">Guide</a><a href="/about">About</a></div></div></header>
 <main>
   <h1>Make a <mark>freeze frame</mark> video.</h1>
   <p class="sub">Upload a clip, freeze one or more moments, add a record scratch, captions and a rewind. Free, no signup, and your video never leaves your browser.</p>
@@ -371,10 +371,10 @@ footer a{color:var(--mut);margin-right:14px}
 
   <div class="cross">
     <div><h2>Try our other tools</h2><p>Make a text match cut video, or put text behind the subject of a photo.</p></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="index.html">Match Cut Maker</a><a class="btn" href="text-behind-image.html">Text Behind Image</a></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/">Match Cut Maker</a><a class="btn" href="/text-behind-image">Text Behind Image</a></div>
   </div>
 
-  <footer><a href="index.html">Match Cut Maker</a><a href="text-behind-image.html">Text Behind Image</a><a href="freeze-frame-video-maker.html">Freeze Frame</a><a href="text-match-cut-generator.html">Guide</a><a href="about.html">About</a><a href="privacy.html">Privacy Policy</a><a href="contact.html">Contact</a><br><span>Videos are edited in your browser and never uploaded.</span></footer>
+  <footer><a href="/">Match Cut Maker</a><a href="/text-behind-image">Text Behind Image</a><a href="/freeze-frame-video-maker">Freeze Frame</a><a href="/text-match-cut-generator">Guide</a><a href="/about">About</a><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a><br><span>Videos are edited in your browser and never uploaded.</span></footer>
 </main>
 <div id="cb">
   <p>We use cookies for ads. Choose personalized ads, or keep ads non-personalized. The tool works either way.</p>
@@ -420,6 +420,17 @@ let mode = 'empty', busy = false, cancelFlag = false, lastBlobUrl = null, scrubT
 let step = 1, fxTimer = 0, playRaf = 0, resultUrl = null;
 
 const cv = $('cv'), ctx = cv.getContext('2d'), wrap = $('wrap'), stage = $('stage');
+const UA = navigator.userAgent;
+const WEBKIT = /AppleWebKit/.test(UA) && !/Chrome|Chromium|Edg|OPR|Android/.test(UA);   // Safari and every browser on iOS
+const HAS_RVFC = typeof HTMLVideoElement !== 'undefined' && 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+let seekEma = 0, seekN = 0, seekTimeouts = 0, gAc = null;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function unlockAudio() {            // must run synchronously inside a click so Safari lets us play and record sound
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+  if (!gAc || gAc.state === 'closed') gAc = new AC();
+  if (gAc.state !== 'running') gAc.resume().catch(() => { });
+  return gAc;
+}
 
 /* ---------------- tiny UI helpers ---------------- */
 const hint = (t, err = false) => { $('hint').innerHTML = t; $('hint').className = 'hint' + (err ? ' err' : ''); };
@@ -629,9 +640,14 @@ function seekTo(t) {
   return new Promise(res => {
     t = clamp(t, 0, Math.max(0, vdur - 0.001));
     if (Math.abs(vid.currentTime - t) < 0.0005 && !vid.seeking) return res();
-    let done = false;
-    const fin = () => { if (done) return; done = true; vid.removeEventListener('seeked', fin); clearTimeout(to); res(); };
-    const to = setTimeout(fin, 2500);
+    let done = false, timedOut = false; const t0 = performance.now();
+    const fin = async () => {
+      if (done) return; done = true; vid.removeEventListener('seeked', fin); clearTimeout(to);
+      if (timedOut) seekTimeouts++; else { seekTimeouts = 0; const ms = performance.now() - t0; seekEma = seekN++ ? seekEma * .8 + ms * .2 : ms; }
+      if (WEBKIT && HAS_RVFC && !timedOut) await new Promise(r => { let d = false; const g = () => { if (!d) { d = true; r(); } }; vid.requestVideoFrameCallback(g); setTimeout(g, 120); });
+      res();
+    };
+    const to = setTimeout(() => { timedOut = true; fin(); }, 2500);
     vid.addEventListener('seeked', fin); vid.currentTime = t;
   });
 }
@@ -662,8 +678,8 @@ function plan() {
 }
 const segIdx = (P, t) => { for (let i = 0; i < P.segs.length; i++) if (t < P.segs[i].out1) return i; return P.segs.length - 1; };
 
-async function renderExportFrame(c, W, H, P, t) {
-  const seg = P.segs[segIdx(P, t)], lt = t - seg.out0;
+async function renderExportFrame(c, W, H, seg, t) {
+  const lt = Math.max(0, t - seg.out0);
   if (seg.type === 'play') { await seekTo(seg.src0 + lt); composePlain(c, W, H, vid); }
   else if (seg.type === 'freeze') composeFreeze(c, W, H, lt, seg.f);
   else { const srcT = Math.max(seg.to, seg.from - lt * seg.f.rewindSpeed); await seekTo(srcT); composeRewind(c, W, H, vid, srcT, lt); }
@@ -764,7 +780,8 @@ async function loadFile(f) {
     if (lastBlobUrl) { URL.revokeObjectURL(lastBlobUrl); lastBlobUrl = null; }
     if (!vid) {
       vid = document.createElement('video'); vid.muted = true; vid.playsInline = true; vid.preload = 'auto';
-      vid.style.cssText = 'position:fixed;left:-9999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none';
+      vid.setAttribute('playsinline', ''); vid.setAttribute('muted', ''); vid.setAttribute('webkit-playsinline', '');
+      vid.style.cssText = 'position:fixed;right:0;bottom:0;width:2px;height:2px;opacity:.01;pointer-events:none;z-index:-1';
       document.body.appendChild(vid);
     }
     const url = URL.createObjectURL(f); lastBlobUrl = url;
@@ -893,9 +910,9 @@ async function runRealtime(record) {
   const [W, H] = record ? outDims() : prevDims();
   const prevMode = mode; mode = record ? 'export' : 'preview';
   stopPlay(); sizeCanvas(W, H); cancelFlag = false; placeFocus();
-  const AC = window.AudioContext || window.webkitAudioContext; let ac = null, dest = null, asrc = null;
+  let ac = null, dest = null, asrc = null;
   if (mix) {
-    ac = new AC(); await ac.resume(); asrc = ac.createBufferSource(); asrc.buffer = mix;
+    ac = unlockAudio(); await ac.resume(); asrc = ac.createBufferSource(); asrc.buffer = mix;
     if (record) { dest = ac.createMediaStreamDestination(); asrc.connect(dest); } else asrc.connect(ac.destination);
   }
   let rec = null, chunks = [], mt = '', recDone = null, vtrack = null;
@@ -937,7 +954,7 @@ async function runRealtime(record) {
       requestAnimationFrame(loop);
     });
   } finally { exitOutputTimeline(); }
-  vid.pause(); try { asrc && asrc.stop(); } catch (e) { } if (ac) ac.close && ac.close();
+  vid.pause(); try { asrc && asrc.stop(); } catch (e) { }
   let blob = null;
   if (rec) { rec.stop(); await recDone; blob = new Blob(chunks, { type: mt.includes('mp4') ? 'video/mp4' : 'video/webm' }); }
   mode = prevMode === 'preview' ? 'source' : prevMode; $('previewBtn').textContent = '\u25B6 Preview result';
@@ -945,6 +962,7 @@ async function runRealtime(record) {
 }
 async function previewResult() {
   if (!vid) return;
+  unlockAudio();
   if (mode === 'preview') { cancelFlag = true; return; }
   if (busy) return; busy = true; setStep(3);
   hint('Previewing the full result. Press <b>Stop</b> to end the preview.');
@@ -956,6 +974,7 @@ async function previewResult() {
 /* ---------------- export ---------------- */
 async function exportMp4() {
   if (!vid || busy) return;
+  unlockAudio();
   busy = true; cancelFlag = false; stopPlay(); mode = 'export'; badge('Exporting\u2026');
   overlay(true, 'Preparing\u2026', 0, true);
   let result = null, note = '';
@@ -963,9 +982,12 @@ async function exportMp4() {
     const P = plan(); await captureAllFrozen();
     overlay(true, 'Mixing sound\u2026', 2, true); await tick();
     const mix = await buildAudio(P);
-    result = await encodeWebCodecs(P, mix).catch(e => { if (e && e.message === 'cancelled') throw e; console.warn('WebCodecs path failed:', e); return null; });
+    let why = '';
+    result = await encodeWebCodecs(P, mix).catch(e => { if (e && e.message === 'cancelled') throw e; console.warn('WebCodecs path failed:', e); why = (e && e.message) || ''; return null; });
     if (!result) {
-      note = ' Your browser can\u2019t do fast MP4 export, so the video was recorded in real time. Chrome or Edge on desktop is fastest.';
+      note = why === 'no-audio-encoder'
+        ? ' This browser can\u2019t encode sound for fast export, so the video was recorded in real time to keep the sound.'
+        : ' The fast MP4 export did not work in this browser (' + (why || 'unsupported') + '), so the video was recorded in real time. Chrome or Edge on desktop is fastest.';
       overlay(true, 'Recording live\u2026 keep this tab open', 0, true);
       const r = await runRealtime(true);
       if (r.cancelled) throw new Error('cancelled');
@@ -999,25 +1021,62 @@ async function encodeWebCodecs(P, mix) {
   if (audio) mo.audio = { codec: audio.mc, numberOfChannels: 2, sampleRate: SR };
   const muxer = new Mp4Muxer.Muxer(mo); let err = null;
   const ve = new VideoEncoder({ output: (c, m) => muxer.addVideoChunk(c, m), error: e => err = e }); ve.configure(vcfg);
+  if (mix && !audio) throw new Error('no-audio-encoder');   // caller falls back to live recording so the sound is kept
   const fc = document.createElement('canvas'); fc.width = W; fc.height = H; const fx = fc.getContext('2d');
   const t0 = performance.now(); let lastUi = 0;
-  for (let n = 0; n < total; n++) {
-    if (cancelFlag) { try { ve.close(); } catch (e) { } throw new Error('cancelled'); }
-    if (err || ve.state === 'closed') throw err || new Error('encoder closed');
-    await renderExportFrame(fx, W, H, P, n / FPS);
+  const checkErr = () => { if (err || ve.state === 'closed') throw err || new Error('encoder closed'); };
+  const encodeNow = n => {
     const f = new VideoFrame(fc, { timestamp: Math.round(n / FPS * 1e6), duration: Math.round(1e6 / FPS) });
     ve.encode(f, { keyFrame: n % FPS === 0 }); f.close();
-    let stall = Date.now();
-    while (ve.encodeQueueSize > 4) {
-      if (err || ve.state === 'closed') throw err || new Error('encoder closed');
-      if (Date.now() - stall > 15000) throw new Error('encoder stalled');
-      await new Promise(r => setTimeout(r, 4));
-    }
+  };
+  const drain = async () => {
+    const st = Date.now();
+    while (ve.encodeQueueSize > 4) { checkErr(); if (Date.now() - st > 15000) throw new Error('encoder stalled'); await sleep(4); }
+  };
+  const ui = async n => {
     const now = performance.now();
-    if (now - lastUi > 120) {
-      lastUi = now; const done = n / total, eta = done > .02 ? (now - t0) / done * (1 - done) / 1000 : null;
-      overlay(true, 'Rendering frame ' + n + ' / ' + total + (eta != null ? ' \u00B7 about ' + Math.ceil(eta) + 's left' : ''), 5 + done * 85, true);
-      ctx.drawImage(fc, 0, 0, cv.width, cv.height); await tick();
+    if (now - lastUi < 120) return; lastUi = now;
+    const done = n / total, eta = done > .02 ? (now - t0) / done * (1 - done) / 1000 : null;
+    overlay(true, 'Rendering frame ' + n + ' / ' + total + (eta != null ? ' \u00B7 about ' + Math.ceil(eta) + 's left' : ''), 5 + done * 85, true);
+    ctx.drawImage(fc, 0, 0, cv.width, cv.height); await tick();
+  };
+  // Play the source video forward and grab frames as they appear. Much faster than seeking to every frame in Safari.
+  const capturePlay = (seg, f0, f1) => new Promise(async (resolve, reject) => {
+    let fin = false, nxt = f0, lastAt = Date.now(), wd = 0;
+    const tgt = k => seg.src0 + (k / FPS - seg.out0);
+    const done = () => { if (fin) return; fin = true; clearInterval(wd); vid.pause(); vid.playbackRate = 1; resolve(); };
+    const fail = e => { if (fin) return; fin = true; clearInterval(wd); vid.pause(); vid.playbackRate = 1; reject(e); };
+    const onFrame = (now, meta) => {
+      if (fin) return;
+      try {
+        if (cancelFlag) return fail(new Error('cancelled'));
+        checkErr(); lastAt = Date.now();
+        let drew = false;
+        while (nxt < f1 && tgt(nxt) <= meta.mediaTime + .5 / FPS) { if (!drew) { composePlain(fx, W, H, vid); drew = true; } encodeNow(nxt++); }
+        ui(nxt);
+        if (nxt >= f1) return done();
+        vid.playbackRate = ve.encodeQueueSize > 6 ? .25 : 1;
+        vid.requestVideoFrameCallback(onFrame);
+      } catch (e) { fail(e); }
+    };
+    try {
+      await seekTo(seg.src0); vid.playbackRate = 1;
+      vid.addEventListener('ended', () => { if (fin) return; try { while (nxt < f1) encodeNow(nxt++); done(); } catch (e) { fail(e); } }, { once: true });
+      wd = setInterval(() => { if (Date.now() - lastAt > 6000) fail(new Error('Video playback stalled in this browser')); }, 1000);
+      vid.requestVideoFrameCallback(onFrame);
+      await vid.play();
+    } catch (e) { fail(e); }
+  });
+  const forceSeq = WEBKIT || window.__ffSeq === 1;
+  for (const seg of P.segs) {
+    const f0 = Math.round(seg.out0 * FPS), f1 = Math.min(total, Math.round(seg.out1 * FPS));
+    if (f1 <= f0) continue;
+    if (seg.type === 'play' && HAS_RVFC && (forceSeq || seekEma > 140 || seekTimeouts >= 2)) { await capturePlay(seg, f0, f1); await drain(); continue; }
+    for (let n = f0; n < f1; n++) {
+      if (cancelFlag) { try { ve.close(); } catch (e) { } throw new Error('cancelled'); }
+      checkErr();
+      await renderExportFrame(fx, W, H, seg, n / FPS);
+      encodeNow(n); await drain(); await ui(n);
     }
   }
   await ve.flush(); if (err) throw err;
