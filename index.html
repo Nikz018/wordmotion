@@ -4,26 +4,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function () { try { var t = localStorage.getItem('theme'); document.documentElement.setAttribute('data-theme', t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'); } catch (e) { } })();
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7495310483429706"
     crossorigin="anonymous"></script>
   <title>Text Match Cut Video Maker – Free Online Tool | TextMatch Studio</title>
   <meta name="description"
     content="Create text match cut videos online for free. Highlight a word, generate a kinetic typography video, and download it directly from your browser. Nothing is uploaded.">
-
   <link rel="canonical" href="https://textmatchstudio.com/">
-
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://textmatchstudio.com/">
   <meta property="og:title" content="Text Match Cut Video Maker – TextMatch Studio">
   <meta property="og:description"
     content="Create text match cut videos for free directly in your browser. Nothing is uploaded.">
   <meta property="og:site_name" content="TextMatch Studio">
-
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Text Match Cut Video Maker – TextMatch Studio">
   <meta name="twitter:description"
     content="Create text match cut videos for free directly in your browser. Nothing is uploaded.">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,650;0,6..72,700;1,6..72,500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -31,18 +33,25 @@
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="site-h">
-    <div class="in"><a class="logo" href="/">TextMatch <mark>Studio</mark></a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
-      <div class="links" role="navigation" aria-label="Main"><a href="/" aria-current="page">Match Cut</a><a
-          href="/text-behind-image">Text Behind</a><a href="/freeze-frame-video-maker">Freeze Frame</a><a
-          href="/text-match-cut-generator">Guide</a><a href="/about">About</a></div>
-      <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌓</button>
+    <div class="in">
+      <a class="logo" href="/">TextMatch <mark>Studio</mark></a>
+      <nav class="links" aria-label="Main">
+        <a href="/" aria-current="page">Match Cut</a>
+        <a href="/text-behind-image">Text Behind</a>
+        <a href="/freeze-frame-video-maker">Freeze Frame</a>
+        <a href="/text-match-cut-generator">Guide</a>
+        <a href="/about">About</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 14.3A8.5 8.5 0 1 1 9.7 3 7 7 0 0 0 21 14.3z"/></svg>
+      </button>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <div class="overlay" id="overlay"></div>
-
-  <nav class="mobile-menu" id="mobile-menu">
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
     <button class="close-btn" aria-label="Close menu">✕</button>
     <nav>
       <a href="/" aria-current="page">Match Cut</a>
@@ -54,72 +63,102 @@
       <a href="/privacy">Privacy Policy</a>
     </nav>
     <div class="theme-row">
-      <label for="mobile-theme">Dark mode</label>
-      <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle dark mode">🌓</button>
+      <span>Appearance</span>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 14.3A8.5 8.5 0 1 1 9.7 3 7 7 0 0 0 21 14.3z"/></svg>
+      </button>
     </div>
   </nav>
 
   <main class="page" id="main">
     <section class="hero">
-      <div class="container">
-        <div class="hero-inner">
-          <div>
-            <span class="badge accent">Free · Browser-based · Nothing uploaded</span>
-            <h1>Highlight a word. <mark>Get a match cut.</mark></h1>
-            <p class="lead">Type a word, hit generate. Rendered 100% in your browser — your word and video never leave
-              your device. Perfect for Reels, TikTok and Shorts.</p>
-            <div class="hero-actions">
-              <a href="/text-behind-image" class="btn">Text Behind Image</a>
-              <a href="/freeze-frame-video-maker" class="btn primary">Freeze Frame Video Maker</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <div class="hero-badge">Live preview</div>
-            <canvas id="cv"></canvas>
-            <div id="stg" style="display:none;color:#bbb;padding:60px 20px;text-align:center;font-size:14px">Rendering
-              your video…<br>The first run can take a few seconds while the encoder starts.</div><video id="vid"
-              controls playsinline loop style="display:none"></video>
-          </div>
+      <div class="hero-copy">
+        <span class="badge accent">Free · In your browser · Nothing uploaded</span>
+        <h1>Highlight a word. <mark>Get a match cut.</mark></h1>
+        <p class="lead">Type a word, hit generate, download an MP4. Rendered on your device — perfect for Reels, TikTok and Shorts.</p>
+        <div class="trust-row">
+          <span>No signup</span>
+          <span>1080p MP4</span>
+          <span>Stays on your device</span>
         </div>
       </div>
     </section>
 
-    <div class="container">
-      <div class="grid">
-        <div>
-          <div class="stage" id="stage"><canvas id="cv2"></canvas></div>
+    <div class="container studio-wrap">
+      <div class="studio-home">
+        <div class="preview-col">
+          <div class="preview-stage" id="stage" data-ar="9:16">
+            <div class="hero-badge badge">Live preview</div>
+            <canvas id="cv"></canvas>
+            <canvas id="cv2"></canvas>
+            <div id="stg">Rendering your video…<br>The first run can take a few seconds while the encoder starts.</div>
+            <video id="vid" controls playsinline loop style="display:none"></video>
+          </div>
           <div class="bar"><i id="pg"></i></div>
-          <div id="st"></div>
+          <div id="st" class="status"></div>
         </div>
-        <div class="card">
-          <label for="w">Word to highlight <b id="cc">0/23</b></label>
-          <input type="text" id="w" maxlength="23" value="gift" autocomplete="off" spellcheck="false">
+
+        <div class="panel">
+          <label class="word-field" for="w">Word to highlight <b id="cc">0/23</b></label>
+          <input class="word-input" type="text" id="w" maxlength="23" value="gift" autocomplete="off" spellcheck="false" aria-describedby="word-hint">
+          <div class="chips" id="word-chips" aria-label="Try a word">
+            <button type="button" class="chip" data-word="gift">gift</button>
+            <button type="button" class="chip" data-word="trust">trust</button>
+            <button type="button" class="chip" data-word="focus">focus</button>
+            <button type="button" class="chip" data-word="now">now</button>
+            <button type="button" class="chip" data-word="money">money</button>
+            <button type="button" class="chip" data-word="wait">wait</button>
+          </div>
+
           <label>Aspect ratio</label>
-          <div class="seg" id="ar"><button data-a="9:16" class="on">9:16</button><button data-a="1:1">1:1</button><button
-              data-a="16:9">16:9</button></div>
-          <label>Cuts per second <b id="cpsv">10</b></label><input type="range" id="cps" min="4" max="30" value="10">
-          <label>Zoom <b id="zv">1.5×</b></label><input type="range" id="zoom" min="0.6" max="2.5" step="0.1" value="1.5">
-          <label>Blur <b id="bv">1.0×</b></label><input type="range" id="blur" min="0" max="2.5" step="0.1" value="1">
-          <label>Duration <b id="dv">4.5s</b></label><input type="range" id="dur" min="2" max="10" step="0.5" value="4.5">
-          <label for="snd">Sound effect</label>
-          <select id="snd">
-            <option value="paper">Paper shuffle (original)</option>
-            <option value="shutter">Camera shutter</option>
-            <option value="pop">Flash pop</option>
-            <option value="none">No sound</option>
-          </select>
-          <button class="go btn primary" id="go">Generate video</button>
-          <button class="go btn" id="dl" style="background:var(--y);color:var(--on-y)">Download</button>
-          <div class="small">Videos are rendered frame by frame in your browser, so they play at the correct speed. Output
-            is MP4.</div>
+          <div class="seg" id="ar">
+            <button type="button" data-a="9:16" class="on">9:16</button>
+            <button type="button" data-a="1:1">1:1</button>
+            <button type="button" data-a="16:9">16:9</button>
+          </div>
+
+          <label>Feel</label>
+          <div class="presets" id="presets">
+            <button type="button" class="chip on" data-preset="classic">Classic</button>
+            <button type="button" class="chip" data-preset="punchy">Punchy</button>
+            <button type="button" class="chip" data-preset="soft">Soft</button>
+          </div>
+
+          <div class="ctrl-group">
+            <label>Cuts per second <b id="cpsv">10</b></label>
+            <input type="range" id="cps" min="4" max="30" value="10">
+            <label>Zoom <b id="zv">1.5×</b></label>
+            <input type="range" id="zoom" min="0.6" max="2.5" step="0.1" value="1.5">
+            <label>Blur <b id="bv">1.0×</b></label>
+            <input type="range" id="blur" min="0" max="2.5" step="0.1" value="1">
+            <label>Duration <b id="dv">4.5s</b></label>
+            <input type="range" id="dur" min="2" max="10" step="0.5" value="4.5">
+            <label for="snd">Sound effect</label>
+            <select id="snd">
+              <option value="paper">Paper shuffle</option>
+              <option value="shutter">Camera shutter</option>
+              <option value="pop">Flash pop</option>
+              <option value="none">No sound</option>
+            </select>
+          </div>
+
+          <div class="go-row">
+            <button class="go btn primary" id="go">Generate video</button>
+            <button class="go btn" id="dl">Download MP4</button>
+          </div>
+          <p class="hint" id="word-hint">Press <kbd>Enter</kbd> to generate. Output is 1080p MP4, rendered frame by frame in this tab.</p>
         </div>
       </div>
+    </div>
 
+    <div class="container">
       <section class="tools" id="tools" aria-labelledby="tools-h">
-        <div class="section-head" id="tools-h">Free tools by TextMatch Studio</div>
+        <div class="section-head" id="tools-h">Three free creator tools</div>
         <div class="section-sub">Everything runs in your browser. No signup, no uploads.</div>
         <div class="tcards">
-          <div class="tcard here"><svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true">
+          <div class="tcard here">
+            <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true">
               <rect width="64" height="64" rx="14" fill="#efede6" />
               <rect x="8" y="12" width="48" height="4" rx="2" fill="#1b1b18" opacity=".22" />
               <rect x="8" y="20" width="48" height="4" rx="2" fill="#1b1b18" opacity=".4" />
@@ -130,135 +169,132 @@
             </svg>
             <div>
               <h3>Text Match Cut Maker</h3>
-              <p>Highlight one word and get a kinetic, newspaper-style MP4 for Reels, TikTok and Shorts.</p><span
-                class="go2">You are using this tool</span>
+              <p>Highlight one word and get a kinetic, newspaper-style MP4 for Reels, TikTok and Shorts.</p>
+              <span class="go2">You are using this tool</span>
             </div>
           </div>
-          <a class="tcard" href="/text-behind-image"><svg width="52" height="52" viewBox="0 0 64 64"
-              aria-hidden="true">
-              <rect width="64" height="64" rx="14" fill="#25252b" /><text x="32" y="43" text-anchor="middle"
-                font-family="Georgia,serif" font-weight="700" font-size="38" fill="#FFE94A">Aa</text>
+          <a class="tcard" href="/text-behind-image">
+            <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true">
+              <rect width="64" height="64" rx="14" fill="#25252b" />
+              <text x="32" y="43" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="38" fill="#FFE94A">Aa</text>
               <circle cx="32" cy="27" r="9" fill="#0d0d10" />
               <path d="M13 64c2-17 12-22 19-22s17 5 19 22z" fill="#0d0d10" />
             </svg>
             <div>
               <h3>Text Behind Image</h3>
-              <p>Put text behind the subject of any photo. Drag it anywhere, then download a PNG.</p><span
-                class="go2">Open tool &rarr;</span>
+              <p>Put text behind the subject of any photo. Drag it anywhere, then download a PNG.</p>
+              <span class="go2">Open tool →</span>
             </div>
           </a>
-          <a class="tcard" href="/freeze-frame-video-maker"><svg width="52" height="52" viewBox="0 0 64 64"
-              aria-hidden="true"><rect width="64" height="64" rx="14" fill="#25252b"/><rect x="12" y="16" width="40"
-                height="32" rx="5" fill="none" stroke="#FFE94A" stroke-width="3"/><rect x="25" y="25" width="5" height="14"
-                rx="1.5" fill="#FFE94A"/><rect x="34" y="25" width="5" height="14" rx="1.5" fill="#FFE94A"/></svg><div><h3>Freeze
-                Frame Video Maker</h3><p>Freeze moments in your clip, add a record scratch, captions and a rewind, then
-                export an MP4.</p><span class="go2">Open tool &rarr;</span></div></a>
+          <a class="tcard" href="/freeze-frame-video-maker">
+            <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true">
+              <rect width="64" height="64" rx="14" fill="#25252b" />
+              <rect x="12" y="16" width="40" height="32" rx="5" fill="none" stroke="#FFE94A" stroke-width="3" />
+              <rect x="25" y="25" width="5" height="14" rx="1.5" fill="#FFE94A" />
+              <rect x="34" y="25" width="5" height="14" rx="1.5" fill="#FFE94A" />
+            </svg>
+            <div>
+              <h3>Freeze Frame Video Maker</h3>
+              <p>Freeze moments in your clip, add a record scratch, captions and a rewind, then export an MP4.</p>
+              <span class="go2">Open tool →</span>
+            </div>
+          </a>
         </div>
       </section>
 
       <section class="info" id="how">
-        <div class="section-head">What is a text match cut?</div>
-        <p>A text match cut is a quick sequence of cuts where one word stays locked in the same spot, at the same size,
-          while everything around it changes. Each frame pulls the word out of a different sentence, so your eye stays
-          fixed on the word while the context flickers past. It is a popular trick in short-form video, essay videos and
-          kinetic typography, because it makes a single word feel loud and memorable without any complicated editing.</p>
         <div class="section-head">How it works</div>
-        <ol>
-          <li><b>Type your word.</b> Short words (up to 23 characters) hit hardest. The preview updates as you type.</li>
-          <li><b>Choose a shape.</b> Pick 9:16 for Shorts, Reels or TikTok, 1:1 for feeds, or 16:9 for YouTube and
-            presentations.</li>
-          <li><b>Tune the feel.</b> Cuts per second sets the rhythm (8 to 12 feels punchy), zoom controls how big the text
-            is, blur softens the surrounding lines, and duration sets the length. Choose a sound effect or none.</li>
-          <li><b>Generate and download.</b> The video is rendered frame by frame in your browser. When it finishes, watch
-            it back, then download it. Not happy? Press Regenerate for a fresh mix of frames.</li>
-        </ol>
-        <p>Everything happens on your device. Your word and your video are never uploaded.</p>
-        <div class="section-head">Ideas and use cases</div>
-        <ul>
-          <li><b>Hook for a Short or Reel.</b> Open with the key word of your video for two to three seconds, then cut to
-            the main content. If your video is about "trust", generate it with the word "trust".</li>
-          <li><b>Intro or title sting.</b> Use your channel's keyword or the episode topic as a one-second opener before
-            the first scene.</li>
-          <li><b>Section transition in essay videos.</b> Drop a short clip between chapters, with the next chapter's key
-            word as the match cut.</li>
-          <li><b>Emphasis for quotes and lyrics.</b> Highlight the one word you want viewers to remember, then reveal the
-            full line.</li>
-          <li><b>Teasers for podcasts and talks.</b> Pair a clip of the key term with a short audio snippet from the
-            episode.</li>
-          <li><b>Classroom and presentations.</b> Introduce a new term with a three-second clip before you explain it.
+        <div class="section-sub">Four seconds from a word to a finished clip.</div>
+        <ol class="steps">
+          <li class="step">
+            <div class="n">1</div>
+            <h3>Type the word</h3>
+            <p>Short words hit hardest. The preview updates as you type, and you can tap a suggestion to try it.</p>
           </li>
-        </ul>
-        <p>In any editor (CapCut, Premiere Pro, DaVinci Resolve), drop the downloaded file on your timeline like a normal
-          clip. Cut your voice-over or music over it, and mute the built-in sound if you want to use your own.</p>
-        <div class="section-head" id="faq">Frequently asked questions</div>
-        <details>
-          <summary>Is my word or my video uploaded anywhere?</summary>
-          <p>No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent
-            to a server, so there is no account, no queue and no copy of your video on our side.</p>
-        </details>
-        <details>
-          <summary>What file format do I get?</summary>
-          <p>MP4 (H.264 video with AAC sound) in modern browsers. Very old browsers fall back to a live recording that may
-            be WebM. If an editor won&#x27;t accept WebM, convert it with a free tool such as HandBrake or CapCut.</p>
-        </details>
-        <details>
-          <summary>Which browsers and devices work?</summary>
-          <p>A recent version of Chrome, Edge, Safari or Firefox on desktop works best. Phones work too, but rendering a
-            1080 by 1920 video is heavy, so older phones may be slow. A laptop gives the smoothest result.</p>
-        </details>
-        <details>
-          <summary>How long does it take to generate a video?</summary>
-          <p>Usually a few seconds. Frames are rendered one by one and encoded with your browser's built-in video encoder,
-            so the speed depends on your device. Keep the tab open until it finishes. Browsers without that encoder fall
-            back to a live recording, which takes as long as the video itself.</p>
-        </details>
-        <details>
-          <summary>What resolution is the output?</summary>
-          <p>1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick
-            9:16 for Shorts, Reels and TikTok.</p>
-        </details>
-        <details>
-          <summary>Can I use the videos commercially?</summary>
-          <p>Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences
-            in the frames are original text written for this tool.</p>
-        </details>
-        <details>
-          <summary>Can I write my own sentences for the frames?</summary>
-          <p>Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to
-            get a different mix with the same word.</p>
-        </details>
-        <details>
-          <summary>Does it work with words in other languages?</summary>
-          <p>Yes, but the frames use a serif font, and scripts it doesn&#x27;t cover fall back to your device&#x27;s
-            default font, so the look can vary. Latin-script words look the most consistent.</p>
-        </details>
-        <details>
-          <summary>The video looks choppy. What can I do?</summary>
-          <p>Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also
-            makes each frame lighter to draw.</p>
-        </details>
-      </section>
+          <li class="step">
+            <div class="n">2</div>
+            <h3>Pick a feel</h3>
+            <p>Classic, Punchy or Soft sets the rhythm. Then tune zoom, blur, duration and sound if you want.</p>
+          </li>
+          <li class="step">
+            <div class="n">3</div>
+            <h3>Generate &amp; download</h3>
+            <p>The video is encoded in your browser as 1080p MP4. Not happy? Regenerate for a fresh mix of frames.</p>
+          </li>
+        </ol>
 
-      <footer>
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="logo">TextMatch <mark>Studio</mark></div>
-            <p>Free browser tools for short-form video and social media creators. Everything runs on your device —
-              nothing is uploaded.</p>
-          </div>
-          <div class="footer-links">
-            <a href="/">Match Cut Maker</a>
-            <a href="/text-behind-image">Text Behind Image</a>
-            <a href="/freeze-frame-video-maker">Freeze Frame</a>
-            <a href="/text-match-cut-generator">Guide</a>
-            <a href="/about">About</a>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/contact">Contact</a>
-          </div>
+        <div class="section-head">What is a text match cut?</div>
+        <p>A text match cut is a quick sequence of cuts where one word stays locked in the same spot, at the same size, while everything around it changes. Each frame pulls the word out of a different sentence, so your eye stays fixed on the word while the context flickers past. It is a popular trick in short-form video, essay videos and kinetic typography, because it makes a single word feel loud and memorable without any complicated editing.</p>
+
+        <div class="section-head">Ideas and use cases</div>
+        <div class="use-grid">
+          <div class="use-card"><b>Hook for a Short or Reel</b><span>Open with the key word of your video for two to three seconds, then cut to the main content.</span></div>
+          <div class="use-card"><b>Intro or title sting</b><span>Use your channel keyword or episode topic as a one-second opener before the first scene.</span></div>
+          <div class="use-card"><b>Essay-video transitions</b><span>Drop a short clip between chapters, with the next chapter’s key word as the match cut.</span></div>
+          <div class="use-card"><b>Quotes, lyrics, talks</b><span>Highlight the one word you want remembered, then reveal the full line.</span></div>
         </div>
-        <div class="footer-note">Videos are made in your browser and never uploaded.</div>
-      </footer>
+        <p>In any editor (CapCut, Premiere Pro, DaVinci Resolve), drop the downloaded file on your timeline like a normal clip. Cut your voice-over or music over it, and mute the built-in sound if you want to use your own.</p>
+
+        <div class="section-head" id="faq">Frequently asked questions</div>
+        <div class="faq-list">
+          <details>
+            <summary>Is my word or my video uploaded anywhere?</summary>
+            <p>No. The word you type and the video you generate are processed entirely inside your browser. Nothing is sent to a server, so there is no account, no queue and no copy of your video on our side.</p>
+          </details>
+          <details>
+            <summary>What file format do I get?</summary>
+            <p>MP4 (H.264 video with AAC sound) in modern browsers. Very old browsers fall back to a live recording that may be WebM. If an editor won’t accept WebM, convert it with a free tool such as HandBrake or CapCut.</p>
+          </details>
+          <details>
+            <summary>Which browsers and devices work?</summary>
+            <p>A recent version of Chrome, Edge, Safari or Firefox on desktop works best. Phones work too, but rendering a 1080 by 1920 video is heavy, so older phones may be slow. A laptop gives the smoothest result.</p>
+          </details>
+          <details>
+            <summary>How long does it take to generate a video?</summary>
+            <p>Usually a few seconds. Frames are rendered one by one and encoded with your browser's built-in video encoder, so the speed depends on your device. Keep the tab open until it finishes.</p>
+          </details>
+          <details>
+            <summary>What resolution is the output?</summary>
+            <p>1080 pixels on the short side: 1080 by 1920 for 9:16, 1080 by 1080 for 1:1 and 1920 by 1080 for 16:9. Pick 9:16 for Shorts, Reels and TikTok.</p>
+          </details>
+          <details>
+            <summary>Can I use the videos commercially?</summary>
+            <p>Yes. The videos you create are yours to use in your own content, including monetized channels. The sentences in the frames are original text written for this tool.</p>
+          </details>
+          <details>
+            <summary>Can I write my own sentences for the frames?</summary>
+            <p>Not at the moment. Each frame uses a built-in set of original sentences, mixed randomly. Press Regenerate to get a different mix with the same word.</p>
+          </details>
+          <details>
+            <summary>Does it work with words in other languages?</summary>
+            <p>Yes, but the frames use a serif font, and scripts it doesn’t cover fall back to your device’s default font, so the look can vary. Latin-script words look the most consistent.</p>
+          </details>
+          <details>
+            <summary>The video looks choppy. What can I do?</summary>
+            <p>Close other tabs and heavy apps, try a shorter duration, or use 1:1 instead of 9:16. Lowering the blur also makes each frame lighter to draw.</p>
+          </details>
+        </div>
+      </section>
     </div>
+
+    <footer class="site-f">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">TextMatch <mark>Studio</mark></div>
+          <p>Free browser tools for short-form video and social media creators. Everything runs on your device — nothing is uploaded.</p>
+        </div>
+        <div class="footer-links">
+          <a href="/">Match Cut Maker</a>
+          <a href="/text-behind-image">Text Behind Image</a>
+          <a href="/freeze-frame-video-maker">Freeze Frame</a>
+          <a href="/text-match-cut-generator">Guide</a>
+          <a href="/about">About</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-note">Videos are made in your browser and never uploaded.</div>
+    </footer>
 
     <div id="cb">
       <p>We use cookies for ads. Choose personalized ads, or keep ads non-personalized. The tool works either way.</p>
@@ -267,26 +303,31 @@
   </main>
 
   <script src="mp4-muxer.js"></script>
+  <script src="assets/js/site.js"></script>
   <script>
     const $ = id => document.getElementById(id), cv = $('cv'), ctx = cv.getContext('2d');
     const cv2 = $('cv2'), ctx2 = cv2.getContext('2d');
     const off = document.createElement('canvas'), o = off.getContext('2d');
-    const SIZES = {'9:16': [1080, 1920], '1:1': [1080, 1080], '16:9': [1920, 1080]};
-    let note = '', ar = '9:16', seed = 1, blob = null, ext = 'webm', busy = false, ac = null, dest = null, nb = null;
+    const SIZES = { '9:16': [1080, 1920], '1:1': [1080, 1080], '16:9': [1920, 1080] };
+    const PRESETS = {
+      classic: { cps: 10, zoom: 1.5, blur: 1, dur: 4.5 },
+      punchy: { cps: 16, zoom: 1.8, blur: 0.4, dur: 3 },
+      soft: { cps: 6, zoom: 1.25, blur: 2, dur: 6.5 }
+    };
+    let note = '', ar = '9:16', seed = 1, blob = null, ext = 'webm', busy = false, ac = null, dest = null, nb = null, idleTick = 0;
 
     const T = ["The mayor denied {W} entirely, then left the room.", "Nobody could explain the {W} on the second floor.", "Sources say the {W} was never reported.", "It turns out the {W} had been signed twice.", "A local woman described the {W} as \"unusual.\"", "Officials confirmed the {W}, but not the date.", "He returned the {W}. Nobody asked why.", "There was a {W} in the report. Page nine.", "The council voted on the {W} and then voted again.", "Witnesses recall the {W} arriving just before noon.", "Both parties agreed the {W} was a misunderstanding.", "Why the {W} matters more than anyone admitted."];
     const F = ["The official statement contained three facts and eleven adjectives.", "Several residents said they had been asked to wait outside.", "A spokesperson smiled and said nothing further would be added.", "The committee has since requested a full review of the matter.", "It was not clear who had approved the original decision.", "Markets reacted calmly, then less calmly, by early afternoon.", "The report was delayed pending confirmation from three offices.", "Nobody wrote it down, but everyone remembers it clearly.", "City officials declined to comment on the unconfirmed details.", "The statement was revised twice before it was released at dusk.", "Experts disagreed, mostly about the meaning of the word itself.", "A full refund was promised and then quietly withdrawn."];
     const M = ["THE DAILY OBSERVER", "THE MORNING GAZETTE", "CITY HERALD", "THE EVENING POST", "UNCONFIRMED SOURCES DESK", "THE LOCAL LEDGER"];
 
-    function rng(s) {return () => {s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296}}
+    function rng(s) { return () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296 } }
 
     const sc = document.createElement('canvas'), sx = sc.getContext('2d');
-    // Cheap blur: draw the row small, then scale it up with smoothing (canvas filter:blur is far too slow for 10+ cuts per second)
     function row(txt, x, y, font, fs, color, blurPx, align) {
-      if (blurPx < 1.2) {o.font = font; o.fillStyle = color; o.textAlign = align; o.fillText(txt, x, y); return }
+      if (blurPx < 1.2) { o.font = font; o.fillStyle = color; o.textAlign = align; o.fillText(txt, x, y); return }
       const k = Math.min(blurPx / 1.3, 24), W = off.width, top = fs * 1.05, sw = Math.ceil(W / k), sh = Math.ceil(fs * 1.6 / k);
       sx.setTransform(1, 0, 0, 1, 0, 0);
-      if (sc.width !== sw || sc.height !== sh) {sc.width = sw; sc.height = sh} else sx.clearRect(0, 0, sw, sh);
+      if (sc.width !== sw || sc.height !== sh) { sc.width = sw; sc.height = sh } else sx.clearRect(0, 0, sw, sh);
       sx.setTransform(1 / k, 0, 0, 1 / k, 0, 0); sx.font = font; sx.fillStyle = color; sx.textAlign = align; sx.fillText(txt, x, top);
       o.imageSmoothingEnabled = true; o.imageSmoothingQuality = 'high';
       o.drawImage(sc, 0, 0, sw, sh, 0, y - top, sw * k, sh * k);
@@ -296,7 +337,7 @@
       const [W, H] = SIZES[ar]; off.width = W; off.height = H;
       const r = rng(i * 7919 + seed), pick = a => a[Math.floor(r() * a.length)];
       const zoom = +$('zoom').value, bl = +$('blur').value, S = Math.min(W, H);
-      const long = () => Array.from({length: 6}, () => pick(F)).join(' ');
+      const long = () => Array.from({ length: 6 }, () => pick(F)).join(' ');
       const g = o.createRadialGradient(W / 2, H / 2, S * .2, W / 2, H / 2, Math.max(W, H) * .75);
       g.addColorStop(0, '#efede6'); g.addColorStop(1, '#dcdad1');
       o.fillStyle = g; o.fillRect(0, 0, W, H);
@@ -304,13 +345,13 @@
       let fs = S * .085 * zoom * (.7 + r() * .85);
       const fam = 'Georgia,"Times New Roman",serif';
       o.font = st + fs + 'px ' + fam; let ww = o.measureText(word).width;
-      if (ww > W * .7) {fs *= W * .7 / ww; o.font = st + fs + 'px ' + fam; ww = o.measureText(word).width}
+      if (ww > W * .7) { fs *= W * .7 / ww; o.font = st + fs + 'px ' + fam; ww = o.measureText(word).width }
       const cx = W / 2, base = H / 2 + fs * .33, lh = fs * 1.5, pad = fs * .12, gap = fs * .26;
       const n = Math.ceil(H / 2 / lh) + 1;
       for (let k = -n; k <= n; k++) {
         if (!k) continue;
         const y = base + k * lh, d = Math.abs(k), bp = bl * d * fs * .04;
-        if (k === -2 && r() < .35) {row(pick(M), cx, y, '600 ' + fs * .26 + 'px system-ui,sans-serif', fs * .26, 'rgba(40,38,34,.55)', bp, 'center'); continue}
+        if (k === -2 && r() < .35) { row(pick(M), cx, y, '600 ' + fs * .26 + 'px system-ui,sans-serif', fs * .26, 'rgba(40,38,34,.55)', bp, 'center'); continue }
         const f = (r() < .3 ? 'italic 700 ' : st) + fs * (d > 2 && r() < .4 ? .45 : 1) + 'px ' + fam;
         row(long(), -r() * fs * 9, y, f, fs, `rgba(35,34,30,${Math.max(.2, .88 - d * .14)})`, bp, 'left');
       }
@@ -324,16 +365,21 @@
       o.fillStyle = '#111'; o.textAlign = 'center'; o.fillText(word, cx, base);
     }
 
-    function setSize() {const [W, H] = SIZES[ar]; cv.width = W; cv.height = H; cv2.width = W; cv2.height = H}
-    function blit(p, c = ctx) {const [W, H] = SIZES[ar], s = 1 + .05 * p; c.drawImage(off, W / 2 - W * s / 2, H / 2 - H * s / 2, W * s, H * s)}
-    function idle() {setSize(); renderCut(0, $('w').value.trim() || 'gift'); blit(0); blit(0, ctx2)}
+    function setSize() { const [W, H] = SIZES[ar]; cv.width = W; cv.height = H; cv2.width = W; cv2.height = H }
+    function blit(p, c = ctx) { const [W, H] = SIZES[ar], s = 1 + .05 * p; c.drawImage(off, W / 2 - W * s / 2, H / 2 - H * s / 2, W * s, H * s) }
+    function syncStage() { $('stage').dataset.ar = ar }
+    function idle() {
+      if (busy) return;
+      setSize();
+      renderCut(idleTick, $('w').value.trim() || 'gift');
+      blit(0); blit(0, ctx2);
+    }
 
     function sfx(k, c, out, t) {
       const g = c.createGain(); g.connect(out);
-      if (k === 'pop') {const os = c.createOscillator(); os.frequency.setValueAtTime(900, t); os.frequency.exponentialRampToValueAtTime(120, t + .08); g.gain.setValueAtTime(.35, t); g.gain.exponentialRampToValueAtTime(.001, t + .09); os.connect(g); os.start(t); os.stop(t + .1); return }
+      if (k === 'pop') { const os = c.createOscillator(); os.frequency.setValueAtTime(900, t); os.frequency.exponentialRampToValueAtTime(120, t + .08); g.gain.setValueAtTime(.35, t); g.gain.exponentialRampToValueAtTime(.001, t + .09); os.connect(g); os.start(t); os.stop(t + .1); return }
       const sr = c.sampleRate, sh = k === 'shutter', n = Math.floor(sr * (sh ? .06 : .035)), b = c.createBuffer(1, n, sr), d = b.getChannelData(0);
-      // matched to the reference clip: ~5ms attack, ~25ms decay, flat 1-8kHz noise
-      for (let i = 0; i < n; i++) {const x = i / sr; d[i] = (Math.random() * 2 - 1) * (x < .005 ? x / .005 : Math.exp(-(x - .005) / (sh ? .012 : .005)))}
+      for (let i = 0; i < n; i++) { const x = i / sr; d[i] = (Math.random() * 2 - 1) * (x < .005 ? x / .005 : Math.exp(-(x - .005) / (sh ? .012 : .005))) }
       const s = c.createBufferSource(), h1 = c.createBiquadFilter(), h2 = c.createBiquadFilter(), lp = c.createBiquadFilter();
       s.buffer = b; h1.type = h2.type = 'highpass'; h1.frequency.value = h2.frequency.value = sh ? 2500 : 1300; lp.type = 'lowpass'; lp.frequency.value = 9000;
       g.gain.value = (sh ? .35 : .2) * (.8 + Math.random() * .4);
@@ -341,50 +387,56 @@
     }
 
     const tick0 = () => new Promise(r => setTimeout(r));
+    function setGo(label, on) {
+      $('go').disabled = !on;
+      $('go').classList.toggle('is-busy', !on);
+      $('go').innerHTML = on ? label : '<span class="spin"></span> Rendering…';
+    }
     function finish(b, e) {
       blob = b; ext = e; $('stg').style.display = 'none'; const v = $('vid'); v.src = URL.createObjectURL(b); cv.style.display = 'none'; v.style.display = 'block'; v.play().catch(() => { });
-      $('dl').style.display = 'block'; $('go').disabled = false; $('go').textContent = 'Regenerate'; $('pg').style.width = '100%';
-      $('st').textContent = 'Done. ' + (b.size / 1048576).toFixed(1) + ' MB ' + e.toUpperCase() + note; busy = false;
+      $('dl').style.display = 'block'; setGo('Regenerate', true); $('pg').style.width = '100%';
+      $('st').textContent = 'Ready · ' + (b.size / 1048576).toFixed(1) + ' MB ' + e.toUpperCase() + note;
+      busy = false;
+      if (window.TMS) TMS.toast('Video ready — download it below');
     }
 
-    // Fast path: render frame by frame with exact timestamps (no real-time capture, so playback speed is always correct)
     async function recordOffline(word, cps, dur, snd) {
       const FPS = 30, [W, H] = SIZES[ar], total = Math.round(dur * FPS), withA = snd !== 'none', SR = 48000;
       $('st').textContent = 'Starting encoder… (first run can take a few seconds)';
       let vcfg = null;
       for (const codec of ['avc1.64002A', 'avc1.640032', 'avc1.640028', 'avc1.4d002a', 'avc1.42002a']) {
-        const c = {codec, width: W, height: H, bitrate: 10e6, framerate: FPS};
-        try {if ((await VideoEncoder.isConfigSupported(c)).supported) {vcfg = c; break} } catch (e) { }
+        const c = { codec, width: W, height: H, bitrate: 10e6, framerate: FPS };
+        try { if ((await VideoEncoder.isConfigSupported(c)).supported) { vcfg = c; break } } catch (e) { }
       }
       if (!vcfg) throw new Error('H.264 encoding not supported');
       let audio = null; note = '';
       if (withA) {
         for (const [codec, mc, br] of [['mp4a.40.2', 'aac', 128000], ['opus', 'opus', 96000]]) {
-          const c = {codec, sampleRate: SR, numberOfChannels: 1, bitrate: br};
-          try {if (window.AudioEncoder && (await AudioEncoder.isConfigSupported(c)).supported) {audio = {cfg: c, mc}; break} } catch (e) { }
+          const c = { codec, sampleRate: SR, numberOfChannels: 1, bitrate: br };
+          try { if (window.AudioEncoder && (await AudioEncoder.isConfigSupported(c)).supported) { audio = { cfg: c, mc }; break } } catch (e) { }
         }
         if (!audio) note = ' (No sound: this browser cannot encode audio. Pick another browser for sound.)';
       }
-      const mo = {target: new Mp4Muxer.ArrayBufferTarget(), video: {codec: 'avc', width: W, height: H, frameRate: FPS}, fastStart: 'in-memory'};
-      if (audio) mo.audio = {codec: audio.mc, numberOfChannels: 1, sampleRate: SR};
+      const mo = { target: new Mp4Muxer.ArrayBufferTarget(), video: { codec: 'avc', width: W, height: H, frameRate: FPS }, fastStart: 'in-memory' };
+      if (audio) mo.audio = { codec: audio.mc, numberOfChannels: 1, sampleRate: SR };
       const muxer = new Mp4Muxer.Muxer(mo); let err = null;
-      const ve = new VideoEncoder({output: (c, m) => muxer.addVideoChunk(c, m), error: e => err = e}); ve.configure(vcfg);
-      const fc = document.createElement('canvas'); fc.width = W; fc.height = H; const fx = fc.getContext('2d'); // detached canvas: much faster than the on-screen one
+      const ve = new VideoEncoder({ output: (c, m) => muxer.addVideoChunk(c, m), error: e => err = e }); ve.configure(vcfg);
+      const fc = document.createElement('canvas'); fc.width = W; fc.height = H; const fx = fc.getContext('2d');
       let last = -1;
       for (let n = 0; n < total; n++) {
         if (err || ve.state === 'closed') throw err || new Error('encoder closed');
         const t = n / FPS, idx = Math.floor(t * cps);
-        if (idx !== last) {last = idx; renderCut(idx, word)}
+        if (idx !== last) { last = idx; renderCut(idx, word) }
         blit((t * cps) % 1, fx);
-        const f = new VideoFrame(fc, {timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / FPS)});
-        ve.encode(f, {keyFrame: n % FPS === 0}); f.close();
+        const f = new VideoFrame(fc, { timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / FPS) });
+        ve.encode(f, { keyFrame: n % FPS === 0 }); f.close();
         let stall = Date.now();
         while (ve.encodeQueueSize > 4) {
           if (err || ve.state === 'closed') throw err || new Error('encoder closed');
           if (Date.now() - stall > 15000) throw new Error('encoder stalled');
           await new Promise(r => setTimeout(r, 4));
         }
-        if (n % 2 === 0) {$('pg').style.width = (n / total * 90) + '%'; $('st').textContent = 'Rendering frame ' + n + ' / ' + total; await tick0()}
+        if (n % 2 === 0) { $('pg').style.width = (n / total * 90) + '%'; $('st').textContent = 'Rendering frame ' + n + ' / ' + total; await tick0() }
       }
       cv.getContext('2d').drawImage(fc, 0, 0);
       cv2.getContext('2d').drawImage(fc, 0, 0);
@@ -392,20 +444,19 @@
       if (audio) {
         $('st').textContent = 'Rendering sound…';
         const oc = new OfflineAudioContext(1, Math.ceil(SR * dur), SR);
-        for (let i = 0; i / cps < dur; i++)sfx(snd, oc, oc.destination, i / cps);
+        for (let i = 0; i / cps < dur; i++) sfx(snd, oc, oc.destination, i / cps);
         const pcm = (await oc.startRendering()).getChannelData(0);
-        const ae = new AudioEncoder({output: (c, m) => muxer.addAudioChunk(c, m), error: e => err = e}); ae.configure(audio.cfg);
+        const ae = new AudioEncoder({ output: (c, m) => muxer.addAudioChunk(c, m), error: e => err = e }); ae.configure(audio.cfg);
         for (let i = 0; i < pcm.length; i += 4800) {
-          const part = pcm.slice(i, i + 4800), ad = new AudioData({format: 'f32-planar', sampleRate: SR, numberOfFrames: part.length, numberOfChannels: 1, timestamp: Math.round(i / SR * 1e6), data: part});
+          const part = pcm.slice(i, i + 4800), ad = new AudioData({ format: 'f32-planar', sampleRate: SR, numberOfFrames: part.length, numberOfChannels: 1, timestamp: Math.round(i / SR * 1e6), data: part });
           ae.encode(ad); ad.close();
         }
         await ae.flush(); if (err) throw err;
       }
       muxer.finalize();
-      return new Blob([muxer.target.buffer], {type: 'video/mp4'});
+      return new Blob([muxer.target.buffer], { type: 'video/mp4' });
     }
 
-    // Fallback for browsers without WebCodecs: live canvas recording
     function recordLive(word, cps, dur, snd) {
       note = '';
       const stream = cv.captureStream(30); let bus = null;
@@ -415,32 +466,40 @@
         bus = ac.createGain(); bus.connect(dest); bus.connect(ac.destination);
       }
       const mt = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m)) || '';
-      const rec = new MediaRecorder(stream, mt ? {mimeType: mt, videoBitsPerSecond: 10e6} : {videoBitsPerSecond: 10e6});
+      const rec = new MediaRecorder(stream, mt ? { mimeType: mt, videoBitsPerSecond: 10e6 } : { videoBitsPerSecond: 10e6 });
       const e = mt.includes('mp4') ? 'mp4' : 'webm', chunks = [];
       rec.ondataavailable = ev => ev.data.size && chunks.push(ev.data);
-      rec.onstop = () => finish(new Blob(chunks, {type: e === 'mp4' ? 'video/mp4' : 'video/webm'}), e);
+      rec.onstop = () => finish(new Blob(chunks, { type: e === 'mp4' ? 'video/mp4' : 'video/webm' }), e);
       let start = 0, last = -1;
       const tick = now => {
         if (!start) start = now; const t = (now - start) / 1000;
-        if (t >= dur) {rec.stop(); return }
+        if (t >= dur) { rec.stop(); return }
         const idx = Math.floor(t * cps);
-        if (idx !== last) {last = idx; renderCut(idx, word); if (bus) sfx(snd, ac, bus, ac.currentTime)}
+        if (idx !== last) { last = idx; renderCut(idx, word); if (bus) sfx(snd, ac, bus, ac.currentTime) }
         blit((t * cps) % 1); blit((t * cps) % 1, ctx2); $('pg').style.width = (t / dur * 100) + '%'; $('st').textContent = 'Recording live… ' + t.toFixed(1) + 's / ' + dur + 's';
         requestAnimationFrame(tick);
       };
       rec.start(); requestAnimationFrame(tick);
     }
 
+    function rememberWord(word) {
+      try {
+        const list = JSON.parse(localStorage.getItem('recent-words') || '[]');
+        localStorage.setItem('recent-words', JSON.stringify([word, ...list.filter(x => x !== word)].slice(0, 6)));
+      } catch (e) { }
+    }
+
     async function generate() {
-      if (busy) return; const word = $('w').value.trim(); if (!word) {$('w').focus(); return }
-      busy = true; $('go').disabled = true; $('dl').style.display = 'none';
-      $('vid').pause(); $('vid').style.display = 'none'; $('pg').style.width = '0'; const fast = !!(window.VideoEncoder && window.VideoFrame && window.Mp4Muxer);
+      if (busy) return; const word = $('w').value.trim(); if (!word) { $('w').focus(); return }
+      busy = true; setGo('Generate video', false); $('dl').style.display = 'none';
+      $('vid').pause(); $('vid').style.display = 'none'; $('pg').style.width = '0';
+      const fast = !!(window.VideoEncoder && window.VideoFrame && window.Mp4Muxer);
       cv.style.display = fast ? 'none' : 'block'; cv2.style.display = fast ? 'block' : 'none'; $('stg').style.display = fast ? 'flex' : 'none';
-      seed = (Math.random() * 1e9) | 0; setSize();
+      seed = (Math.random() * 1e9) | 0; setSize(); rememberWord(word);
       const cps = +$('cps').value, dur = +$('dur').value, snd = $('snd').value;
       if (fast) {
-        try {finish(await recordOffline(word, cps, dur, snd), 'mp4'); return }
-        catch (e) {cv.style.display = 'block'; cv2.style.display = 'none'; $('stg').style.display = 'none'; console.warn('WebCodecs path failed, using live recording', e); setSize(); $('st').textContent = 'Fast mode failed (' + (e && e.message || e) + '). Using live recording…'}
+        try { finish(await recordOffline(word, cps, dur, snd), 'mp4'); return }
+        catch (e) { cv.style.display = 'block'; cv2.style.display = 'none'; $('stg').style.display = 'none'; console.warn('WebCodecs path failed, using live recording', e); setSize(); $('st').textContent = 'Fast mode failed (' + (e && e.message || e) + '). Using live recording…' }
       }
       recordLive(word, cps, dur, snd);
     }
@@ -450,61 +509,47 @@
       const name = 'match-cut-' + ($('w').value.trim().replace(/[^\w]+/g, '-') || 'video') + '.' + ext;
       try {
         const d = window.claude && await claude.use('downloads');
-        if (d) {await d.save({filename: name, data: blob}); return }
-      } catch (e) {if (e && e.code === 'declined') return }
+        if (d) { await d.save({ filename: name, data: blob }); return }
+      } catch (e) { if (e && e.code === 'declined') return }
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+      if (window.TMS) TMS.toast('Download started');
+    }
+
+    function applyPreset(name) {
+      const p = PRESETS[name]; if (!p) return;
+      $('cps').value = p.cps; $('zoom').value = p.zoom; $('blur').value = p.blur; $('dur').value = p.dur;
+      $('cpsv').textContent = p.cps; $('zv').textContent = (+p.zoom).toFixed(1) + '×'; $('bv').textContent = (+p.blur).toFixed(1) + '×'; $('dv').textContent = p.dur + 's';
+      document.querySelectorAll('#presets .chip').forEach(c => c.classList.toggle('on', c.dataset.preset === name));
+      if (!busy) idle();
+    }
+
+    function setWord(word) {
+      $('w').value = word.slice(0, 23);
+      $('cc').textContent = $('w').value.length + '/23';
+      document.querySelectorAll('#word-chips .chip').forEach(c => c.classList.toggle('on', c.dataset.word === word));
+      if (!busy) idle();
     }
 
     $('go').onclick = generate; $('dl').onclick = save;
-    $('ar').onclick = e => {const b = e.target.closest('button'); if (!b || busy) return; ar = b.dataset.a;[...$('ar').children].forEach(x => x.classList.toggle('on', x === b)); idle()};
-    const bind = (id, out, fmt) => $(id).oninput = () => {$(out).textContent = fmt($(id).value); if (!busy && id !== 'cps' && id !== 'dur') idle()};
+    $('ar').onclick = e => {
+      const b = e.target.closest('button'); if (!b || busy) return;
+      ar = b.dataset.a; [...$('ar').children].forEach(x => x.classList.toggle('on', x === b));
+      syncStage(); idle();
+    };
+    const bind = (id, out, fmt) => $(id).oninput = () => { $(out).textContent = fmt($(id).value); if (!busy && id !== 'cps' && id !== 'dur') idle() };
     bind('cps', 'cpsv', v => v); bind('zoom', 'zv', v => (+v).toFixed(1) + '×'); bind('blur', 'bv', v => (+v).toFixed(1) + '×'); bind('dur', 'dv', v => v + 's');
-    $('w').oninput = () => {$('cc').textContent = $('w').value.length + '/23'; if (!busy) idle()};
-    $('w').onkeydown = e => {if (e.key === 'Enter') generate()};
+    $('w').oninput = () => { $('cc').textContent = $('w').value.length + '/23'; document.querySelectorAll('#word-chips .chip').forEach(c => c.classList.toggle('on', c.dataset.word === $('w').value)); if (!busy) idle() };
+    $('w').onkeydown = e => { if (e.key === 'Enter') generate() };
+    $('word-chips').onclick = e => { const b = e.target.closest('[data-word]'); if (b) setWord(b.dataset.word) };
+    $('presets').onclick = e => { const b = e.target.closest('[data-preset]'); if (b) applyPreset(b.dataset.preset) };
     $('cc').textContent = $('w').value.length + '/23';
-    if (!window.VideoEncoder && !window.MediaRecorder) {$('go').disabled = true; $('st').textContent = 'This browser cannot create videos. Try a recent Chrome, Edge, Safari or Firefox.'}
-    idle();
-
-    // ---- Mobile menu & theme ----
-    const navToggle = document.querySelector('.nav-toggle');
-    const closeBtn = document.querySelector('.close-btn');
-    const mobileMenu = $('#mobile-menu');
-    const overlay = $('#overlay');
-
-    function openMenu() { mobileMenu.classList.add('open'); overlay.classList.add('visible'); navToggle.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { mobileMenu.classList.remove('open'); overlay.classList.remove('visible'); navToggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
-
-    navToggle.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
-
-    function applyTheme(dark) {
-      if (dark) document.documentElement.setAttribute('data-theme', 'dark');
-      else document.documentElement.removeAttribute('data-theme');
-      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) { }
+    if (!window.VideoEncoder && !window.MediaRecorder) { $('go').disabled = true; $('st').textContent = 'This browser cannot create videos. Try a recent Chrome, Edge, Safari or Firefox.' }
+    syncStage(); idle();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => { if (busy || $('vid').style.display === 'block') return; idleTick++; seed = (seed + 17) | 0; idle(); }, 1600);
     }
 
-    const themeToggle = document.querySelector('.theme-toggle');
-    const mobileThemeToggle = $('#mobile-theme-toggle');
-
-    try {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        applyTheme(true);
-      }
-    } catch (e) { }
-
-    themeToggle.addEventListener('click', () => {
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      applyTheme(!dark);
-    });
-    mobileThemeToggle.addEventListener('click', () => {
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      applyTheme(!dark);
-    });
-
-    // ---- ADS: fill these in after AdSense approval, then redeploy ----
-    const ADS = {client: '', top: '', bottom: ''}; // client: 'ca-pub-XXXXXXXXXXXXXXXX', top/bottom: ad slot IDs
+    const ADS = { client: '', top: '', bottom: '' };
     function loadAds(npa) {
       if (!ADS.client) return;
       window.adsbygoogle = window.adsbygoogle || []; if (npa) adsbygoogle.requestNonPersonalizedAds = 1;
@@ -517,10 +562,10 @@
       });
     }
     (function () {
-      let c = null; try {c = localStorage.getItem('ad-consent')} catch (e) { }
-      if (c) {loadAds(c === 'npa'); return }
+      let c = null; try { c = localStorage.getItem('ad-consent') } catch (e) { }
+      if (c) { loadAds(c === 'npa'); return }
       if (!ADS.client) return;
-      const pick = v => {try {localStorage.setItem('ad-consent', v)} catch (e) { } $('cb').style.display = 'none'; loadAds(v === 'npa')};
+      const pick = v => { try { localStorage.setItem('ad-consent', v) } catch (e) { } $('cb').style.display = 'none'; loadAds(v === 'npa') };
       $('cb').style.display = 'flex'; $('ca').onclick = () => pick('all'); $('cn').onclick = () => pick('npa');
     })();
   </script>
